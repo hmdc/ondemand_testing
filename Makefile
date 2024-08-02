@@ -1,6 +1,6 @@
 # default build target
-all:: local
-.PHONY: sid fasrc fasrcv3 test ondemand ondemand-test landing
+all:: ondemand
+.PHONY: sid fasrc fasrcv3 ondemand
 
 WARNING=\033[0;32m
 NC=\033[0m
@@ -26,14 +26,6 @@ fasrc:
 	cp -rf ./sid/cypress.env.json.$(CONFIG) cypress.env.json
 	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/fasrc-dashboard/*"
 
-test:
-	cd ../dashboard/ && DETACHED=true make
-	docker pull $(DOCKER_CYPRESS_IMAGE)
-	./wait_for_dashboard.sh
-	cp -rf ./sid/cypress.env.json.local cypress.env.json
-	docker run --rm --network=host -v $(WORKING_DIR):/usr/local/app -v /usr/local/app/node_modules -w /usr/local/app --env cypress_dashboard_username=$$OOD_USERNAME --env cypress_dashboard_password=$$OOD_PASSWORD $(DOCKER_CYPRESS_IMAGE) /bin/bash -c "npm install && ./node_modules/.bin/cypress run --headless --spec cypress/e2e/fasrc-dashboard/*,cypress/e2e/sid-dashboard/*" || :
-	cd ../dashboard/ && make down
-
 fasrcv3:
 	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
 	cp -rf ./ondemand/cypress.env.json.$(CONFIG) cypress.env.json
@@ -43,16 +35,3 @@ ondemand:
 	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
 	cp -rf ./ondemand/cypress.env.json.$(CONFIG) cypress.env.json
 	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/*.cy.js,cypress/e2e/ondemand/fasrc/*.cy.js,cypress/e2e/ondemand/sid/*.cy.js"
-
-
-ondemand-test:
-	cd ../ondemand/ && DETACHED=true make
-	docker pull $(DOCKER_CYPRESS_IMAGE)
-	env ENDPOINT=https://localhost:33000/pun/sys/dashboard ./wait_for_dashboard.sh
-	cp -rf ./ondemand/cypress.env.json.local cypress.env.json
-	docker run --rm --network=host -v $(WORKING_DIR):/usr/local/app -v /usr/local/app/node_modules -w /usr/local/app --env cypress_dashboard_username=$$OOD_USERNAME --env cypress_dashboard_password=$$OOD_PASSWORD $(DOCKER_CYPRESS_IMAGE) /bin/bash -c 'npm install && ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/**/*.cy.js"' || :
-	cd ../ondemand/ && make down
-
-landing:
-	cp -rf landing/cypress.env.json.landing cypress.env.json
-	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec cypress/e2e/sid-landing-site/*

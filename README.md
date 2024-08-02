@@ -1,13 +1,11 @@
 # OnDemand automated tests for IQSS
 The automated tests are based on the Cypress testing tool: [https://docs.cypress.io](https://docs.cypress.io)
 
-We have 3 test suites, one suite has been developed for the Sid custom dashboard and FASRC dashboard based on OnDemand version 2.0.29. This suite is called `sid`.
+We have 2 test suites, one suite has been developed for OnDemand version 3.x with the old FASRC configuration. This suite is called `fasrcv3`
 
-The second suite based on OnDemand version 3.x with the old FASRC configuration. This suite is called `fasrcv3`
+The second suite based on OnDemand version 3.x and the Sid and FASRC profiles. This suite is called `ondemand`
 
-The third suite based on OnDemand version 3.x and the Sid and FASRC profiles. This suite is called `ondemand`
-
-The `sid` and `fasrcv3` suites will deprecated and deleted once the new OnDemand environments are deployed into Staging and Production.
+The `fasrcv3` suites will deprecated and deleted once the new OnDemand environments are deployed into Staging and Production.
 
 ## Local environment
 The automated tests has been developed and tested using:
@@ -36,28 +34,9 @@ node --version
 `npm install`
 
 ## Running tests
-To run tests against a remote environment, you need to be connected to the appropriate VPN, `fasrc` or `fasse`.
+To run tests against a remote environment, you need to be connected to the appropriate VPN, `iqssrc`, `fasrc` or `fasse`.
 
-Cypress can be configured using environment variables. We use a feature of Cypress to setup and environment file: `cypress.env.json` with environment specific configuration. Each `make` task that executes a test will create a copy of the enviroment specific file into the `cypress.env.json` file.
-
-### Sid Tests
-In order to support the multiple Sid2 environments, we have created several configuration files for each one of them:
- * `sid/cypress.env.json.local` - to be removed.
- * `sid/cypress.env.json.remote-dev` - to be removed.
- * `sid/cypress.env.json.remote-fasse` - to be removed.
- * `sid/cypress.env.json.staging-cannon`
- * `sid/cypress.env.json.staging-fasse`
- * `sid/cypress.env.json.prod-cannon`
- * `sid/cypress.env.json.prod-fasse`
-
- The following `make` tasks will execute the tests locally against each environment using a Cypress runtime to run the tests:
-  * `make sid CONFIG=local` - to be removed.
-  * `make sid CONFIG=remote-dev` - to be removed.
-  * `make sid CONFIG=remote-fasse` - to be removed.
-  * `make sid CONFIG=staging-cannon`
-  * `make sid CONFIG=staging-fasse`
-  * `make sid CONFIG=prod-cannon`
-  * `make sid CONFIG=prod-fasse`
+Cypress can be configured using environment variables. We use a feature of Cypress to setup and environment file: `cypress.env.json` with environment specific configuration. Each `make` task that executes a test will create a copy of the environment specific file into the `cypress.env.json` file.
 
   There is a special make task that is used to run the tests within a GitHub action for the Sid2 project: `make test`  
   This task will first start the Sid custom Dashboard in the local Docker environment and then run the tests against it.
@@ -67,21 +46,34 @@ In order to support the multiple OnDemand environments, we have created several 
  * `ondemand/cypress.env.json.local` - to be removed.
  * `ondemand/cypress.env.json.staging-cannon`
  * `ondemand/cypress.env.json.staging-fasse`
- * `ondemand/cypress.env.json.prod-cannon` - to be created after staging deployment.
+ * `ondemand/cypress.env.json.prod-cannon`
+ * `ondemand/cypress.env.json.prod-cannon-a`
+ * `ondemand/cypress.env.json.prod-cannon-b`
+ * `ondemand/cypress.env.json.prod-cannon-c`
  * `ondemand/cypress.env.json.prod-fasse`
+ * `ondemand/cypress.env.json.prod-fasse-a`
+ * `ondemand/cypress.env.json.prod-fasse-b`
+ * `ondemand/cypress.env.json.prod-fasse-c`
 
 The following `make` tasks will execute the tests for FASRC v3:
-  * `make fasrcv3 CONFIG=staging-cannon`
-  * `make fasrcv3 CONFIG=staging-fasse`
-  * `make fasrcv3 CONFIG=prod-cannon` - to be created.
+  * `make fasrcv3 CONFIG=prod-cannon`
+  * `make fasrcv3 CONFIG=prod-cannon-a`
+  * `make fasrcv3 CONFIG=prod-cannon-b`
+  * `make fasrcv3 CONFIG=prod-cannon-c`
   * `make fasrcv3 CONFIG=prod-fasse`
+  * `make fasrcv3 CONFIG=prod-fasse-a`
+  * `make fasrcv3 CONFIG=prod-fasse-b`
+  * `make fasrcv3 CONFIG=prod-fasse-c`
 
 The following `make` tasks will execute the tests for OnDemand v3 with the FASRC and Sid profiles against the different environments:
-  * `make ondemand CONFIG=local` - to be removed.
-  * `make ondemand CONFIG=staging-cannon`
-  * `make ondemand CONFIG=staging-fasse`
-  * `make ondemand CONFIG=prod-cannon` - to be created.
-  * `make ondemand CONFIG=prod-fasse` - to be created.
+  * `make ondemand CONFIG=prod-cannon`
+  * `make ondemand CONFIG=prod-cannon-a`
+  * `make ondemand CONFIG=prod-cannon-b`
+  * `make ondemand CONFIG=prod-cannon-c`
+  * `make ondemand CONFIG=prod-fasse`
+  * `make ondemand CONFIG=prod-fasse-a`
+  * `make ondemand CONFIG=prod-fasse-b`
+  * `make ondemand CONFIG=prod-fasse-c`
 
 
 ### Dashboard Credentials
@@ -112,10 +104,10 @@ Opening Cypress UI
 npm run cypress -- open
 
 Running all tests inside a folder
-npm run cypress -- run --spec "cypress/e2e/sid-dashboard/*"
+npm run cypress -- run --spec "cypress/e2e/ondemand/sid/*"
 
 Running an individual test
-npm run cypress -- run --spec "cypress/e2e/sid-dashboard/footer.spec.js"
+npm run cypress -- run --spec "cypress/e2e/ondemand/fasrcv3/footer.spec.js"
 npm run cypress -- run --spec "cypress/e2e/ondemand/supportticket.cy.js"
 
 Running with other browsers
