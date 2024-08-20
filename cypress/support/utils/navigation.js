@@ -3,8 +3,14 @@ export const NAVIGATION = {
   rootPath: Cypress.env('dashboard_rootPath'),
 }
 export const navigateToApplication = applicationName => {
-  cy.get('nav li[title="Interactive Apps"] > a').click()
-  cy.get(`nav li[title="Interactive Apps"] ul a[title="${applicationName}"]`).click()
+  cy.get('nav li.dropdown a[title="Interactive Apps"]').click()
+  cy.get(`nav li.dropdown a[title="Interactive Apps"] ~ ul a[title="${applicationName}"]`).click()
+}
+
+export const visitApplication = appToken => {
+  const auth = cy.sid.auth
+  const qs = cy.sid.query_params
+  cy.visit(`/pun/sys/dashboard/batch_connect/${appToken}/session_contexts/new`, { auth, qs })
 }
 
 export const loadHomepage = () => {
@@ -15,14 +21,14 @@ export const loadHomepage = () => {
 }
 
 export const navigateActiveJobs = () => {
-  cy.get('nav li[title="Jobs"] > a').click()
-  cy.get('nav li[title="Jobs"] ul a[title="Active Jobs"]').click()
+  cy.get('nav li.dropdown a[title="Jobs"]').click()
+  cy.get('nav a[title="Jobs"] ~ ul a[title="Active Jobs"]').click()
 }
 
 export const navigateJobComposer = () => {
-  cy.get('nav li[title="Jobs"] > a').click()
-  cy.get('nav li[title="Jobs"] ul a[title="Job Composer"]').then($jobComponerLink => {
-    const url = $jobComponerLink.prop('href')
+  cy.get('nav li.dropdown a[title="Jobs"]').click()
+  cy.get('nav li.dropdown a[title="Jobs"] ~ ul a[title="Job Composer"]').then($jobComposerLink => {
+    const url = $jobComposerLink.prop('href')
     const auth = cy.sid.auth
     const qs = cy.sid.query_params
     cy.visit(url, { auth, qs })
@@ -30,26 +36,15 @@ export const navigateJobComposer = () => {
 }
 
 export const navigateFiles = () => {
-  cy.get('nav li[title="Files"] > a').click()
-  cy.get('nav li[title="Files"] ul a[title="Home Directory"]').click()
-}
-
-export const navigateApplication = appName => {
-  cy.get('nav li[title="Interactive Apps"] > a').click()
-  cy.get(`nav li[title="Interactive Apps"] ul a[title="${appName}"]`).click()
-}
-
-export const visitApplication = appToken => {
-  const auth = cy.sid.auth
-  const qs = cy.sid.query_params
-  cy.visit(`/pun/sys/dashboard/batch_connect/${appToken}/session_contexts/new`, { auth, qs })
+  cy.get('nav li.dropdown a[title="Files"]').click()
+  cy.get('nav li.dropdown a[title="Files"] ~ ul a[title="Home Directory"]').click()
 }
 
 export const navigateSessions = () => {
-  cy.get('nav li[title="My Interactive Sessions"] > a').click()
+  cy.get('nav a[title="My Interactive Sessions"]').click()
 }
 
 export const navigateToSupport = () => {
-  cy.get('nav li[title="Help"] > a').click()
-  cy.get('nav li[title="Help"] ul a[title="Submit Support Ticket"]').click()
+  cy.get('nav li.dropdown a[title="Help"]').click()
+  cy.get('nav li.dropdown a[title="Help"] ~ ul a[title="Submit Support Ticket"]').click()
 }

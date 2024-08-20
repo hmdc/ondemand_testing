@@ -1,4 +1,4 @@
-import { navigateSessions, navigateApplication } from "../../support/utils/navigation.js";
+import { navigateSessions, navigateToApplication } from "../../support/utils/navigation.js";
 import { cleanupSessions, checkSession } from "../../support/utils/sessions_2.0.js";
 
 describe('Sid Dashboard - Interactive Sessions', () => {
@@ -29,7 +29,7 @@ describe('Sid Dashboard - Interactive Sessions', () => {
 
   it('Should display session panel fields', () => {
     cleanupSessions()
-    navigateApplication(demoApp.name)
+    navigateToApplication(demoApp.name)
     cy.get('div[role="main"] h3').should('contain.text', demoApp.name)
     //LAUNCH APP WITH EMPTY PARAMETERS
     cy.get('form#new_batch_connect_session_context input[type="submit"]').click()

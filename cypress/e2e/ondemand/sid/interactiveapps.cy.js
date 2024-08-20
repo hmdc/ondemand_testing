@@ -1,4 +1,4 @@
-import { NAVIGATION, loadHomepage, navigateApplication } from "../../../support/utils/navigation.js";
+import { NAVIGATION, loadHomepage, navigateToApplication } from "../../../support/utils/navigation.js";
 import { changeProfile } from "../../../support/utils/profiles.js";
 import { cleanupSessions, checkSession } from "../../../support/utils/sessions.js";
 
@@ -22,7 +22,7 @@ describe('Sid Dashboard - Interactive Apps', () => {
   it('Should display restricted interactive apps left menu', () => {
     cy.wrap(interactiveApps).each( app => {
       cy.task('log', `Checking interactive app menu: ${app.token}`)
-      navigateApplication(app.name)
+      navigateToApplication(app.name)
       cy.get('div.system-and-shared-apps-header div.card-header').should($heading => {
         expect($heading.text()).to.match(/interactive apps/i)
       })
@@ -43,7 +43,7 @@ describe('Sid Dashboard - Interactive Apps', () => {
     it(`Should launch interactive application: ${app.token}`, () => {
       cleanupSessions()
 
-      navigateApplication(app.name)
+      navigateToApplication(app.name)
       cy.get('div[role="main"] h3').should('contain.text', app.name)
       //LAUNCH APP WITH EMPTY PARAMETERS
       cy.get('form#new_batch_connect_session_context input[type="submit"]').click()

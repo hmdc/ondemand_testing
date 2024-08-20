@@ -107,7 +107,7 @@ Running all tests inside a folder
 npm run cypress -- run --spec "cypress/e2e/ondemand/sid/*"
 
 Running an individual test
-npm run cypress -- run --spec "cypress/e2e/ondemand/fasrcv3/footer.spec.js"
+npm run cypress -- run --spec "cypress/e2e/ondemand/fasrcv3/footer.cy.js"
 npm run cypress -- run --spec "cypress/e2e/ondemand/supportticket.cy.js"
 
 Running with other browsers
