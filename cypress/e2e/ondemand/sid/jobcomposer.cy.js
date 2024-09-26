@@ -1,7 +1,7 @@
 import { NAVIGATION, loadHomepage, navigateJobComposer } from "../../../support/utils/navigation.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
-describe('FASRC Dashboard - Job Composer', () => {
+describe('Sid Dashboard - Job Composer', () => {
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
 

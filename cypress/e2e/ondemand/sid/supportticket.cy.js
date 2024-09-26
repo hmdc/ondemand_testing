@@ -2,7 +2,7 @@ import { NAVIGATION, loadHomepage, visitApplication, navigateToSupport } from ".
 import { checkSession,  cleanupSessions } from "../../../support/utils/sessions.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
-describe('OnDemand Dashboard - Support Ticket', () => {
+describe('Sid Dashboard - Support Ticket', () => {
   const supportTicket = Cypress.env('support_ticket') || cy.sid.supportTicket
   const demoApp = cy.sid.ondemandApplications.filter(l => l.id == Cypress.env('interactive_sessions_app')).shift()
   Cypress.config('baseUrl', NAVIGATION.baseUrl);

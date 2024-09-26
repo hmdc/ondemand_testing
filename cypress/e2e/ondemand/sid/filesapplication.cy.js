@@ -1,7 +1,7 @@
 import { NAVIGATION, loadHomepage, navigateFiles } from "../../../support/utils/navigation.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
-describe('FASRC Dashboard - Files Application', () => {
+describe('Sid Dashboard - Files Application', () => {
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
 
   before(() => {

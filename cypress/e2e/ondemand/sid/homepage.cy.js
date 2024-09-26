@@ -1,9 +1,10 @@
-import { NAVIGATION, loadHomepage } from "../../../support/utils/navigation.js";
+import {NAVIGATION, loadHomepage, visitApplication} from "../../../support/utils/navigation.js";
 import { changeProfile } from "../../../support/utils/profiles.js";
 import { cleanupSessions, checkSession} from "../../../support/utils/sessions.js";
 
 describe('Sid Dashboard - Homepage', () => {
   const activePinnedApps = cy.sid.ondemandApplications.filter(l => Cypress.env('sid_pinned_apps').includes(l.id))
+  const demoApp = cy.sid.ondemandApplications.filter(l => l.id == Cypress.env('interactive_sessions_app')).shift()
   const launchApplications = Cypress.env('launch_applications')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
 
@@ -51,6 +52,22 @@ describe('Sid Dashboard - Homepage', () => {
         checkSession(app)
       }) 
     })
+  })
+
+  it.only('Should display Active Sessions Widget', () => {
+    cleanupSessions()
+    visitApplication(demoApp.token)
+    //LAUNCH APP WITH EMPTY PARAMETERS
+    cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
+    checkSession(demoApp)
+
+    // ACTIVE SESSION WIDGET SHOULD APPEAR
+    loadHomepage()
+    cy.get('div.active-sessions-header h3').should($activeSessionsTitle => {
+      expect(cy.sid.normalize($activeSessionsTitle.text())).to.match(new RegExp('active interactive sessions', 'i'))
+    })
+    checkSession(demoApp)
+
   })
 
   const QUICK_LINKS_ASSERTS = {

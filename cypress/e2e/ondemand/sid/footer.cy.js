@@ -1,7 +1,7 @@
 import { NAVIGATION, loadHomepage } from "../../../support/utils/navigation.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
-describe('OnDemand Dashboard - Footer', () => {
+describe('Sid Dashboard - Footer', () => {
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
 
