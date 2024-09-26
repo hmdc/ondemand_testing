@@ -21,7 +21,7 @@ export const checkSession = (app, supportTicketEnabled=true) => {
 
   //GET ALL PANEL ITEMS
   cy.get('div.session-panel[data-id]').find('.card-body p strong').then($sessionPanelInfoTitles => {
-    const titlesArray = $sessionPanelInfoTitles.map((index, $item, c) => $item.innerText.toLowerCase()).get()
+    const titlesArray = $sessionPanelInfoTitles.map((index, $item, c) => $item.innerText.trim().toLowerCase()).get()
     //CHECKING SOME OF THE SESSION TITLES
     expect(titlesArray).to.contain('host:')
     expect(titlesArray).to.contain('created at:')

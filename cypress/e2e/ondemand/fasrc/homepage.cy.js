@@ -3,7 +3,7 @@ import { changeProfile } from "../../../support/utils/profiles.js";
 import { cleanupSessions} from "../../../support/utils/sessions.js";
 
 describe('FASRC Dashboard - Homepage', () => {
-  const activePinnedApps = cy.sid.ondemandApplications.filter(l => Cypress.env('fasrc_pinned_apps').includes(l.id))
+  const activePinnedApps = cy.sid.ondemandApplications.filter(l => Cypress.env('fasrcv3_pinned_apps').includes(l.id))
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
 
@@ -32,7 +32,10 @@ describe('FASRC Dashboard - Homepage', () => {
   })
 
   it(`${fasrcClusterProfile}: Documentation main sections`, () => {
-    cy.get('div img[src="/public/rc-logo-text_2017_sm.png"]').first().should('be.visible')
+    cy.get('div img[src="/public/rc-logo-text_2017_sm.png"]').should($imageElement => {
+      expect($imageElement).to.have.length(1)
+      expect($imageElement.attr('alt')).to.match(/.*harvard university.*$/i)
+    })
     const welcomeText = Cypress.env('fasrc_welcome_text')
     cy.get('div h1').invoke('text').should('match', new RegExp(welcomeText, "i"))
     cy.get('div h2').eq(0).invoke('text').should('match', /Documentation and Training/)

@@ -3,7 +3,6 @@ import { changeProfile } from "../../../support/utils/profiles.js";
 import { cleanupSessions, checkSession} from "../../../support/utils/sessions.js";
 
 describe('Sid Dashboard - Homepage', () => {
-
   const activePinnedApps = cy.sid.ondemandApplications.filter(l => Cypress.env('sid_pinned_apps').includes(l.id))
   const launchApplications = Cypress.env('launch_applications')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);

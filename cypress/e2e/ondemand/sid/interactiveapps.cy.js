@@ -3,7 +3,6 @@ import { changeProfile } from "../../../support/utils/profiles.js";
 import { cleanupSessions, checkSession } from "../../../support/utils/sessions.js";
 
 describe('Sid Dashboard - Interactive Apps', () => {
-
   const interactiveApps = cy.sid.ondemandApplications.filter(l => Cypress.env('sid_dashboard_applications').includes(l.id))
   const launchApplications = Cypress.env('launch_applications')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
@@ -45,6 +44,7 @@ describe('Sid Dashboard - Interactive Apps', () => {
 
       navigateToApplication(app.name)
       cy.get('div[role="main"] h3').should('contain.text', app.name)
+
       //LAUNCH APP WITH EMPTY PARAMETERS
       cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
       //CHECK LAUNCHED APP IN SESSIONS PAGE IS RUNNING

@@ -2,9 +2,7 @@ import { NAVIGATION, loadHomepage } from "../../../support/utils/navigation.js";
 import { changeProfile } from "../../../support/utils/profiles.js";
 
 describe('Sid Dashboard - Header', () => {
-
   const interactiveApps = cy.sid.ondemandApplications.filter(l => Cypress.env('sid_dashboard_applications').includes(l.id))
-  const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
 
   before(() => {
@@ -41,10 +39,10 @@ describe('Sid Dashboard - Header', () => {
   })
 
   it('Should display Files navigation item with home directory link', () => {
-    cy.get('nav li[title="Files"]').as('navItem')
-    cy.get('@navItem').find('> a').invoke('text').should('match', /files/i)
-    cy.get('@navItem').find('> a').click()
-    cy.get('@navItem').find('ul li').as('menu').its('length').should('be.gte', 1)
+    cy.get('nav li.dropdown a[title="Files"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /files/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li').as('menu').its('length').should('be.gte', 1)
 
     cy.get('@menu').first().should('be.visible')
     cy.get('@menu').first().find('a').should($submenuElement => {
@@ -53,10 +51,10 @@ describe('Sid Dashboard - Header', () => {
   })
 
   it('Should display Jobs navigation item', () => {
-    cy.get('nav li[title="Jobs"]').as('navItem')
-    cy.get('@navItem').find('> a').invoke('text').should('match', /jobs/i)
-    cy.get('@navItem').find('> a').click()
-    cy.get('@navItem').find('ul li').as('menu').should('have.length', 2)
+    cy.get('nav li.dropdown a[title="Jobs"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /jobs/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li').as('menu').should('have.length', 2)
 
     cy.get('@menu').eq(0).should('be.visible')
     cy.get('@menu').eq(0).find('a').should($submenuElement => {
@@ -71,10 +69,10 @@ describe('Sid Dashboard - Header', () => {
   })
 
   it('Should display Terminals navigation item', () => {
-    cy.get('nav li[title="Terminals"]').as('navItem')
-    cy.get('@navItem').find('> a').invoke('text').should('match', /terminals/i)
-    cy.get('@navItem').find('> a').click()
-    cy.get('@navItem').find('ul li').as('menu').should('have.length', 1)
+    cy.get('nav li.dropdown a[title="Terminals"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /terminals/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li').as('menu').should('have.length', 1)
 
     cy.get('@menu').first().should('be.visible')
     cy.get('@menu').first().find('a').should($submenuElement => {
@@ -83,10 +81,10 @@ describe('Sid Dashboard - Header', () => {
   })
 
   it('Should display Interactive Apps navigation item with restricted apps', () => {
-    cy.get('nav li[title="Interactive Apps"]').as('navItem')
-    cy.get('@navItem').find('> a').invoke('text').should('match', /interactive apps/i)
-    cy.get('@navItem').find('> a').click()
-    cy.get('@navItem').find('ul li a').as('menu').should('have.length.gte', interactiveApps.length)
+    cy.get('nav li.dropdown a[title="Interactive Apps"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /interactive apps/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li a').as('menu').should('have.length.gte', interactiveApps.length)
 
     interactiveApps.forEach( (app) => {
       cy.get('@menu').filter(`a[title="${app.name}"]`).should($appElement => {
@@ -98,8 +96,8 @@ describe('Sid Dashboard - Header', () => {
   })
 
   it('Should display Interactive Sessions navigation item', () => {
-    cy.get('nav li[title="My Interactive Sessions"]').as('navItem')
-    cy.get('@navItem').find('> a').should($navElement => {
+    cy.get('nav a[title="My Interactive Sessions"]').as('navItem')
+    cy.get('@navItem').should($navElement => {
       $navElement.is(':visible')
       expect($navElement.text().trim()).to.match(/my interactive sessions/i)
       expect($navElement.attr('href')).to.contain('/batch_connect/sessions')
@@ -124,7 +122,8 @@ describe('Sid Dashboard - Header', () => {
   })
 
   it('Should display Help links', () => {
-    cy.get('nav li[title="Help"] ul.dropdown-menu').as('helpMenu')
+    cy.get('nav li.dropdown a[title="Help"]').invoke('text').should('match', /help/i)
+    cy.get('nav li.dropdown a[title="Help"] + ul.dropdown-menu').as('helpMenu')
     cy.get('@helpMenu').find('a').should($helpLinks => {
       expect($helpLinks.eq(0).text().trim()).to.match(/contact support/i)
       expect($helpLinks.eq(0).attr('href')).to.equal('https://docs.rc.fas.harvard.edu/kb/support/')
@@ -132,11 +131,14 @@ describe('Sid Dashboard - Header', () => {
       expect($helpLinks.eq(1).attr('href')).to.equal('https://portal.rc.fas.harvard.edu/pwreset/')
       expect($helpLinks.eq(2).text().trim()).to.match(/submit support ticket/i)
       expect($helpLinks.eq(2).attr('href')).to.match(/support$/)
+      expect($helpLinks.eq(3).text().trim()).to.match(/restart web server/i)
+      expect($helpLinks.eq(3).attr('href')).to.equal('/nginx/stop?redir=/pun/sys/dashboard/')
     })
 
+    const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
     // PROFILE LINKS
     cy.get('@helpMenu').find('li.dropdown-header').should($profileHeaderElement => {
-      expect($profileHeaderElement.text().trim()).to.match(/interface/i)
+      expect($profileHeaderElement.text().trim()).to.match(/profile/i)
     })
     cy.get('@helpMenu').find(`a[title="${fasrcClusterProfile}"]`).should($profileLinkElement => {
       expect($profileLinkElement.text().trim()).to.equal(fasrcClusterProfile)
@@ -148,8 +150,7 @@ describe('Sid Dashboard - Header', () => {
     })
   })
 
-  it('Should display Develop, User and Logout items', () => {
-    cy.get('nav li[title="Develop"] a.nav-link').contains('Develop')
+  it('Should display User and Logout items', () => {
     cy.get('nav a.nav-link.disabled').contains('Logged in as')
 
     cy.get('nav a.nav-link[href="/logout"]').should($logoutLinkElement => {
