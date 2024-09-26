@@ -38,12 +38,11 @@ To run tests against a remote environment, you need to be connected to the appro
 
 Cypress can be configured using environment variables. We use a feature of Cypress to setup and environment file: `cypress.env.json` with environment specific configuration. Each `make` task that executes a test will create a copy of the environment specific file into the `cypress.env.json` file.
 
-  There is a special make task that is used to run the tests within a GitHub action for the Sid2 project: `make test`  
-  This task will first start the Sid custom Dashboard in the local Docker environment and then run the tests against it.
-
 ### FASRCv3 and OnDemand Tests
 In order to support the multiple OnDemand environments, we have created several configuration files for each one of them:
  * `ondemand/cypress.env.json.local` - to be removed.
+ * `ondemand/cypress.env.json.dev-cannon`
+ * `ondemand/cypress.env.json.dev-fasse`
  * `ondemand/cypress.env.json.staging-cannon`
  * `ondemand/cypress.env.json.staging-fasse`
  * `ondemand/cypress.env.json.prod-cannon`
@@ -107,7 +106,7 @@ Running all tests inside a folder
 npm run cypress -- run --spec "cypress/e2e/ondemand/sid/*"
 
 Running an individual test
-npm run cypress -- run --spec "cypress/e2e/ondemand/fasrcv3/footer.spec.js"
+npm run cypress -- run --spec "cypress/e2e/ondemand/fasrcv3/footer.cy.js"
 npm run cypress -- run --spec "cypress/e2e/ondemand/supportticket.cy.js"
 
 Running with other browsers

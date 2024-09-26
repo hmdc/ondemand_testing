@@ -1,12 +1,15 @@
-import { NAVIGATION, loadHomepage, navigateActiveJobs, visitApplication } from "../../support/utils/navigation.js";
-import { cleanupSessions, checkSession } from "../../support/utils/sessions.js";
+import { NAVIGATION, loadHomepage, navigateActiveJobs, visitApplication } from "../../../support/utils/navigation.js";
+import { cleanupSessions, checkSession } from "../../../support/utils/sessions.js";
+import {changeProfile} from "../../../support/utils/profiles";
 
 describe('FASRC Dashboard - Active Jobs', () => {
-  const demoApp = cy.sid.ondemandApplications.filter(l => l.id == Cypress.env('interactive_sessions_app')).shift()
+  const demoApp = cy.sid.ondemandApplications.filter(l => l.id == Cypress.env('fasrcv3_interactive_sessions_app')).shift()
+  const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
-  
+
   before(() => {
     loadHomepage()
+    changeProfile(fasrcClusterProfile)
   })
 
   beforeEach(() => {
@@ -15,7 +18,7 @@ describe('FASRC Dashboard - Active Jobs', () => {
     loadHomepage()
   })
 
-  it('Should display active jobs page', () => {
+  it(`${fasrcClusterProfile}: Should display active jobs page`, () => {
     cleanupSessions()
     visitApplication(demoApp.token)
     //LAUNCH APP WITH EMPTY PARAMETERS

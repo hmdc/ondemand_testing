@@ -1,4 +1,4 @@
-import { NAVIGATION, loadHomepage, navigateApplication } from "../../../support/utils/navigation.js";
+import { NAVIGATION, loadHomepage, navigateToApplication } from "../../../support/utils/navigation.js";
 import { cleanupSessions, checkSession } from "../../../support/utils/sessions.js";
 
 describe('FASRC Dashboard - Interactive Apps', () => {
@@ -19,7 +19,7 @@ describe('FASRC Dashboard - Interactive Apps', () => {
   it('Should display restricted interactive apps left menu', () => {
     cy.wrap(interactiveApps).each( app => {
       cy.task('log', `Checking interactive app menu: ${app.token}`)
-      navigateApplication(app.name)
+      navigateToApplication(app.name)
       cy.get('div.system-and-shared-apps-header div.card-header').should($heading => {
         expect($heading.text()).to.match(/interactive apps/i)
       })
@@ -40,7 +40,7 @@ describe('FASRC Dashboard - Interactive Apps', () => {
     it(`Should launch interactive application: ${app.token} - launchApplications: ${launchApplications}`, () => {
       cleanupSessions()
 
-      navigateApplication(app.name)
+      navigateToApplication(app.name)
       cy.get('div[role="main"] h3').should('contain.text', app.name)
 
       //LAUNCH APP WITH EMPTY PARAMETERS

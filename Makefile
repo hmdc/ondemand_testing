@@ -1,6 +1,6 @@
 # default build target
 all:: ondemand
-.PHONY: sid fasrc fasrcv3 ondemand
+.PHONY: sid fasrcv3 ondemand
 
 WARNING=\033[0;32m
 NC=\033[0m
@@ -19,12 +19,7 @@ endif
 sid:
 	@echo -e "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
 	cp -rf ./sid/cypress.env.json.$(CONFIG) cypress.env.json
-	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec cypress/e2e/fasrc-dashboard/*,cypress/e2e/sid-dashboard/*
-
-fasrc:
-	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
-	cp -rf ./sid/cypress.env.json.$(CONFIG) cypress.env.json
-	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/fasrc-dashboard/*"
+	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec cypress/e2e/sid-dashboard/*
 
 fasrcv3:
 	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
@@ -34,4 +29,4 @@ fasrcv3:
 ondemand:
 	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
 	cp -rf ./ondemand/cypress.env.json.$(CONFIG) cypress.env.json
-	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/*.cy.js,cypress/e2e/ondemand/fasrc/*.cy.js,cypress/e2e/ondemand/sid/*.cy.js"
+	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/fasrc/*.cy.js,cypress/e2e/ondemand/sid/*.cy.js"

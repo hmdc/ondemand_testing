@@ -1,13 +1,3 @@
-export const startInteractiveApplication = ({position = 0, name} = {}) => {
-  const longRunningTimeout = cy.sid.timeout
-  cy.get('nav li[title="Interactive Apps"] > a').click()
-  const linkAttribute = name ? `title="${name}"`: 'title'
-  cy.get(`nav li[title="Interactive Apps"] ul a[${linkAttribute}]`).eq(position).click().then($appLink =>{
-    cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
-    cy.get('div.session-panel[data-id] div.card-heading div.float-right', { timeout: longRunningTimeout }).should('contain.text', 'Running')
-  })
-}
-
 export const startDevSession = () => {
   const auth = cy.sid.auth
   const qs = cy.sid.query_params
@@ -31,7 +21,7 @@ export const checkSession = (app, supportTicketEnabled=true) => {
 
   //GET ALL PANEL ITEMS
   cy.get('div.session-panel[data-id]').find('.card-body p strong').then($sessionPanelInfoTitles => {
-    const titlesArray = $sessionPanelInfoTitles.map((index, $item, c) => $item.innerText.toLowerCase()).get()
+    const titlesArray = $sessionPanelInfoTitles.map((index, $item, c) => $item.innerText.trim().toLowerCase()).get()
     //CHECKING SOME OF THE SESSION TITLES
     expect(titlesArray).to.contain('host:')
     expect(titlesArray).to.contain('created at:')
@@ -65,7 +55,7 @@ export const deleteSession = sessionId => {
 }
 
 export const cleanupSessions = () => {
-  cy.get('nav li[title="My Interactive Sessions"] > a').click()
+  cy.get('nav a[title="My Interactive Sessions"]').click()
   cy.get("body").then($body => {
     const $sessions = $body.find("div#batch_connect_sessions div.session-panel")
     if ($sessions.length == 0){

@@ -28,10 +28,10 @@ describe('FASRC Dashboard - Header', () => {
   })
 
   it('Should display Clusters navigation item', () => {
-    cy.get('nav li[title="Clusters"]').as('navItem')
-    cy.get('@navItem').find('> a').invoke('text').should('match', /clusters/i)
-    cy.get('@navItem').find('> a').click()
-    cy.get('@navItem').find('ul li').as('menu').should('have.length', 1)
+    cy.get('nav li.dropdown a[title="Clusters"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /clusters/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li').as('menu').should('have.length', 1)
 
     cy.get('@menu').first().should('be.visible')
     cy.get('@menu').first().find('a').should($submenuElement => {
@@ -40,10 +40,10 @@ describe('FASRC Dashboard - Header', () => {
   })
 
   it('Should display Files navigation item with home directory link', () => {
-    cy.get('nav li[title="Files"]').as('navItem')
-    cy.get('@navItem').find('> a').invoke('text').should('match', /files/i)
-    cy.get('@navItem').find('> a').click()
-    cy.get('@navItem').find('ul li').as('menu').its('length').should('be.gte', 1)
+    cy.get('nav li.dropdown a[title="Files"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /files/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li').as('menu').its('length').should('be.gte', 1)
 
     cy.get('@menu').first().should('be.visible')
     cy.get('@menu').first().find('a').should($submenuElement => {
@@ -52,10 +52,10 @@ describe('FASRC Dashboard - Header', () => {
   })
 
   it('Should display Jobs navigation item', () => {
-    cy.get('nav li[title="Jobs"]').as('navItem')
-    cy.get('@navItem').find('> a').invoke('text').should('match', /jobs/i)
-    cy.get('@navItem').find('> a').click()
-    cy.get('@navItem').find('ul li').as('menu').should('have.length', 2)
+    cy.get('nav li.dropdown a[title="Jobs"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /jobs/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li').as('menu').should('have.length', 2)
 
     cy.get('@menu').eq(0).should('be.visible')
     cy.get('@menu').eq(0).find('a').should($submenuElement => {
@@ -70,10 +70,10 @@ describe('FASRC Dashboard - Header', () => {
   })
 
   it('Should display Interactive Apps navigation item with installed apps', () => {
-    cy.get('nav li[title="Interactive Apps"]').as('navItem')
-    cy.get('@navItem').find('> a').invoke('text').should('match', /interactive apps/i)
-    cy.get('@navItem').find('> a').click()
-    cy.get('@navItem').find('ul li a').as('menu').should('have.length.gte', interactiveApps.length)
+    cy.get('nav li.dropdown a[title="Interactive Apps"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /interactive apps/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li a').as('menu').should('have.length.gte', interactiveApps.length)
 
     interactiveApps.forEach( (app) => {
       cy.get('@menu').filter(`a[title="${app.name}"]`).should($appElement => {
@@ -85,8 +85,8 @@ describe('FASRC Dashboard - Header', () => {
   })
 
   it('Should display Interactive Sessions navigation item', () => {
-    cy.get('nav li[title="My Interactive Sessions"]').as('navItem')
-    cy.get('@navItem').find('> a').should($navElement => {
+    cy.get('nav a[title="My Interactive Sessions"]').as('navItem')
+    cy.get('@navItem').should($navElement => {
       $navElement.is(':visible')
       expect($navElement.text().trim()).to.match(/my interactive sessions/i)
       expect($navElement.attr('href')).to.contain('/batch_connect/sessions')
@@ -94,13 +94,26 @@ describe('FASRC Dashboard - Header', () => {
   })
 
   it('Should display Help links', () => {
-    cy.get('nav li[title="Help"] ul.dropdown-menu').as('helpMenu')
-    cy.get('@helpMenu').find('a').should($helpLinks => {
-      expect($helpLinks.eq(0).text().trim()).to.match(/contact support/i)
-      expect($helpLinks.eq(0).attr('href')).to.eq('https://docs.rc.fas.harvard.edu/kb/support/')
+    cy.get('nav li.dropdown a[title="Help"]').as('navItem')
+    cy.get('@navItem').invoke('text').should('match', /help/i)
+    cy.get('@navItem').click()
+    cy.get('@navItem').find('~ ul li').as('menu').should('have.length', 3)
 
-      expect($helpLinks.eq(1).text().trim()).to.match(/change hpc password/i)
-      expect($helpLinks.eq(1).attr('href')).to.eq('https://portal.rc.fas.harvard.edu/pwreset/')
+    cy.get('@menu').eq(0).should('be.visible')
+    cy.get('@menu').eq(0).find('a').should($submenuElement => {
+      expect($submenuElement.text().trim()).to.match(/contact support/i)
+      expect($submenuElement.attr('href')).to.eq('https://docs.rc.fas.harvard.edu/kb/support/')
+    })
+
+    cy.get('@menu').eq(1).should('be.visible')
+    cy.get('@menu').eq(1).find('a').should($submenuElement => {
+      expect($submenuElement.text().trim()).to.match(/change hpc password/i)
+      expect($submenuElement.attr('href')).to.eq('https://portal.rc.fas.harvard.edu/pwreset/')
+    })
+
+    cy.get('@menu').eq(2).should('be.visible')
+    cy.get('@menu').eq(2).find('a').should($submenuElement => {
+      expect($submenuElement.text().trim()).to.match(/restart web server/i)
     })
   })
 
