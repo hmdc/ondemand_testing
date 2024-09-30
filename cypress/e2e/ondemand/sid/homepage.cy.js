@@ -54,7 +54,7 @@ describe('Sid Dashboard - Homepage', () => {
     })
   })
 
-  it.only('Should display Active Sessions Widget', () => {
+  it('Should display Active Sessions Widget', () => {
     cleanupSessions()
     visitApplication(demoApp.token)
     //LAUNCH APP WITH EMPTY PARAMETERS
