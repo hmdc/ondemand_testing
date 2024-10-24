@@ -111,11 +111,12 @@ describe('Sid Dashboard - Homepage', () => {
 
   it('Documentation main sections', () => {
     cy.get('div.docs-sections-container h3').should($sectionTitles => {
-      expect($sectionTitles).to.have.length(4)
+      expect($sectionTitles).to.have.length(5)
       expect($sectionTitles.eq(0).text()).to.match(/getting started/i)
-      expect($sectionTitles.eq(1).text()).to.match(/documentation and training/i)
-      expect($sectionTitles.eq(2).text()).to.match(/support/i)
-      expect($sectionTitles.eq(3).text()).to.match(/system status and planned downtime/i)
+      expect($sectionTitles.eq(1).text()).to.match(/documentation/i)
+      expect($sectionTitles.eq(2).text()).to.match(/training/i)
+      expect($sectionTitles.eq(3).text()).to.match(/support/i)
+      expect($sectionTitles.eq(4).text()).to.match(/system status and planned downtime/i)
     })
   })
 

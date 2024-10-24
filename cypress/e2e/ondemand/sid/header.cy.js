@@ -104,7 +104,8 @@ describe('Sid Dashboard - Header', () => {
     })
   })
 
-  it('Should display Sid Support navigation items', () => {
+  // SID NAVIGATION ITEMS HAVE BEEN REMOVED. NEW ITEMS WILL BE DEVELOPED
+  it.skip('Should display Sid Support navigation items', () => {
     cy.get('nav a.nav-link[title="About"]').should($element => {
       expect($element.text().trim()).to.match(/about/i)
       expect($element.attr('href')).to.equal('https://www.iq.harvard.edu/research-computing#AboutSidNG')
@@ -126,7 +127,7 @@ describe('Sid Dashboard - Header', () => {
     cy.get('nav li.dropdown a[title="Help"] + ul.dropdown-menu').as('helpMenu')
     cy.get('@helpMenu').find('a').should($helpLinks => {
       expect($helpLinks.eq(0).text().trim()).to.match(/contact support/i)
-      expect($helpLinks.eq(0).attr('href')).to.equal('https://docs.rc.fas.harvard.edu/kb/support/')
+      expect($helpLinks.eq(0).attr('href')).to.equal('https://www.rc.fas.harvard.edu/about/contact/')
       expect($helpLinks.eq(1).text().trim()).to.match(/change hpc password/i)
       expect($helpLinks.eq(1).attr('href')).to.equal('https://portal.rc.fas.harvard.edu/pwreset/')
       expect($helpLinks.eq(2).text().trim()).to.match(/submit support ticket/i)

@@ -35,6 +35,8 @@ describe('FASRC Dashboard - Homepage', () => {
     cy.get('div img[src="/public/rc-logo-text_2017_sm.png"]').should($imageElement => {
       expect($imageElement).to.have.length(1)
       expect($imageElement.attr('alt')).to.match(/.*harvard university.*$/i)
+      expect($imageElement.attr('alt')).to.match(/.*faculty of arts and sciences.*$/i)
+      expect($imageElement.attr('alt')).to.match(/.*research computing.*$/i)
     })
     const welcomeText = Cypress.env('fasrc_welcome_text')
     cy.get('div h1').invoke('text').should('match', new RegExp(welcomeText, "i"))

@@ -26,10 +26,10 @@ describe('FASRC Dashboard - Footer', () => {
     cy.get('footer a').should($logos => {
       expect($logos).to.have.length(3)
 
-      expect($logos.eq(0).attr('href')).to.equal('https://osc.github.io/Open-OnDemand/')
+      expect($logos.eq(0).attr('href')).to.equal('https://openondemand.org')
       expect($logos.eq(0).find('img').attr('alt')).to.match(/powered by open ondemand/i)
 
-      expect($logos.eq(1).attr('href')).to.equal('https://vdi.rc.fas.harvard.edu/pun/sys/dashboard')
+      expect($logos.eq(1).attr('href')).to.equal('https://www.rc.fas.harvard.edu')
       expect($logos.eq(1).find('img').attr('alt')).to.match(/fasrc/i)
 
       expect($logos.eq(2).attr('href')).to.equal('https://www.iq.harvard.edu/')

@@ -107,7 +107,8 @@ npm run cypress -- run --spec "cypress/e2e/ondemand/sid/*"
 
 Running an individual test
 npm run cypress -- run --spec "cypress/e2e/ondemand/fasrcv3/footer.cy.js"
-npm run cypress -- run --spec "cypress/e2e/ondemand/supportticket.cy.js"
+npm run cypress -- run --spec "cypress/e2e/ondemand/fasrc/homepage.cy.js"
+npm run cypress -- run --spec "cypress/e2e/ondemand/sid/supportticket.cy.js"
 
 Running with other browsers
 npm run cypress -- run --browser chrome"

@@ -100,7 +100,7 @@ describe('FASRC Dashboard - Header', () => {
     cy.get('nav li.dropdown a[title="Help"] + ul.dropdown-menu').as('helpMenu')
     cy.get('@helpMenu').find('a').should($helpLinks => {
       expect($helpLinks.eq(0).text().trim()).to.match(/contact support/i)
-      expect($helpLinks.eq(0).attr('href')).to.equal('https://docs.rc.fas.harvard.edu/kb/support/')
+      expect($helpLinks.eq(0).attr('href')).to.equal('https://www.rc.fas.harvard.edu/about/contact/')
       expect($helpLinks.eq(1).text().trim()).to.match(/change hpc password/i)
       expect($helpLinks.eq(1).attr('href')).to.equal('https://portal.rc.fas.harvard.edu/pwreset/')
       expect($helpLinks.eq(2).text().trim()).to.match(/submit support ticket/i)
