@@ -1,5 +1,5 @@
-import { NAVIGATION, loadHomepage, navigateActiveJobs, visitApplication } from "../../../support/utils/navigation.js";
-import { cleanupSessions, checkSession } from "../../../support/utils/sessions.js";
+import { NAVIGATION, loadHomepage, navigateActiveJobs } from "../../../support/utils/navigation.js";
+import {cleanupSessions, checkSession, startAppSession} from "../../../support/utils/sessions.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
 describe('Sid Dashboard - Active Jobs', () => {
@@ -19,9 +19,8 @@ describe('Sid Dashboard - Active Jobs', () => {
 
   it('Should display active jobs page', () => {
     cleanupSessions()
-    visitApplication(demoApp.token)
     //LAUNCH APP WITH EMPTY PARAMETERS
-    cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
+    startAppSession(demoApp)
     checkSession(demoApp)
     navigateActiveJobs()
     // THERE ARE JS ERRORS IN THE ACTIVE JOBS PAGE

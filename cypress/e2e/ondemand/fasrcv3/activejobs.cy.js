@@ -1,5 +1,5 @@
 import { NAVIGATION, loadHomepage, navigateActiveJobs, visitApplication } from "../../../support/utils/navigation.js";
-import { cleanupSessions, checkSession } from "../../../support/utils/sessions.js";
+import { cleanupSessions, checkSession, startAppSession } from "../../../support/utils/sessions.js";
 
 describe('FASRC Dashboard - Active Jobs', () => {
   const demoApp = cy.sid.ondemandApplications.filter(l => l.id == Cypress.env('fasrcv3_interactive_sessions_app')).shift()
@@ -17,10 +17,9 @@ describe('FASRC Dashboard - Active Jobs', () => {
 
   it('Should display active jobs page', () => {
     cleanupSessions()
-    visitApplication(demoApp.token)
     //LAUNCH APP WITH EMPTY PARAMETERS
-    cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
-    checkSession(demoApp, false)
+    startAppSession(demoApp)
+    checkSession(demoApp, true)
     navigateActiveJobs()
     // THERE ARE JS ERRORS IN THE ACTIVE JOBS PAGE
     Cypress.on('uncaught:exception', () => false)

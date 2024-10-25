@@ -1,5 +1,5 @@
-import { NAVIGATION, loadHomepage, visitApplication, navigateToSupport } from "../../../support/utils/navigation.js";
-import { checkSession,  cleanupSessions } from "../../../support/utils/sessions.js";
+import { NAVIGATION, loadHomepage, navigateToSupport } from "../../../support/utils/navigation.js";
+import { checkSession,  cleanupSessions, startAppSession } from "../../../support/utils/sessions.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
 describe('OnDemand Dashboard - Support Ticket', () => {
@@ -40,9 +40,8 @@ describe('OnDemand Dashboard - Support Ticket', () => {
 
   it(`${fasrcClusterProfile}: Should display support ticket page for selected session`, () => {
     cleanupSessions()
-    visitApplication(demoApp.token)
     //LAUNCH APP WITH EMPTY PARAMETERS
-    cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
+    startAppSession(demoApp)
     checkSession(demoApp, true)
     cy.get('div.session-panel[data-id] .card-body p a:contains(support)').click()
 

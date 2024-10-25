@@ -12,6 +12,8 @@ cy.sid = {
     username: Cypress.env('dashboard_username'),
     password: Cypress.env('dashboard_password')
   },
+  //SLURM PARTITION => IN CASE test PARTITION IS NOT WORKING
+  partition: Cypress.env('slurm_partition') ?? "test",
   //QUERY PARAMS TO ENABLE/DISABLE FEATURES WHEN NEEDED
   query_params: {
   },

@@ -6,6 +6,7 @@ describe('Sid Dashboard - Homepage', () => {
   const activePinnedApps = cy.sid.ondemandApplications.filter(l => Cypress.env('sid_pinned_apps').includes(l.id))
   const demoApp = cy.sid.ondemandApplications.filter(l => l.id == Cypress.env('interactive_sessions_app')).shift()
   const launchApplications = Cypress.env('launch_applications')
+  const partition = cy.sid.partition
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
 
   before(() => {
@@ -32,7 +33,7 @@ describe('Sid Dashboard - Homepage', () => {
     it(`Sid Pinned Apps: ${app.id} - launchApplications: ${launchApplications}`, () => {
       cy.get(`div[data-toggle="launcher-button"] p.app-title:contains(${app.name})`).should('be.visible')
 
-      const appUrl = `/pun/sys/dashboard/batch_connect/${app.token}/session_contexts`
+      const appUrl = `${NAVIGATION.rootPath}/batch_connect/${app.token}/session_contexts`
       //CHECK IF USING CUSTOM PINNED APPS WIDGET
       cy.get(`div[data-toggle="launcher-button"] form[action="${appUrl}"] button[type="submit"]`).then(submitButton => {
         if (submitButton.length > 0) {

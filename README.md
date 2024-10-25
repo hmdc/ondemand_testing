@@ -131,3 +131,34 @@ When running through Docker, Cypress prints some error messages:
 ```
 
 According to Cypress support, these are messages printed by the Electron browser and it is [fine to ignore](https://github.com/cypress-io/cypress/issues/4925)
+
+## Manual Testing
+
+Manually testing the SSL certificate of each individual host with cUrl
+```
+nslookup b-cannonooda-01.rc.fas.harvard.edu
+curl -v --resolve rcood.rc.fas.harvard.edu:443:10.242.123.101 --head https://rcood.rc.fas.harvard.edu/pun/sys/dashboard
+
+*  SSL certificate verify ok.
+* using HTTP/1.x
+> HEAD /pun/sys/dashboard HTTP/1.1
+> Host: rcood.rc.fas.harvard.edu
+> User-Agent: curl/8.7.1
+> Accept: */*
+>
+* Request completely sent off
+< HTTP/1.1 401 Unauthorized
+HTTP/1.1 401 Unauthorized
+< Date: Fri, 25 Oct 2024 15:15:29 GMT
+Date: Fri, 25 Oct 2024 15:15:29 GMT
+< Server: Apache
+Server: Apache
+< Content-Security-Policy: frame-ancestors https://*.rc.fas.harvard.edu;
+Content-Security-Policy: frame-ancestors https://*.rc.fas.harvard.edu;
+< Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+< WWW-Authenticate: Basic realm="private"
+WWW-Authenticate: Basic realm="private"
+< Content-Type: text/html; charset=iso-8859-1
+Content-Type: text/html; charset=iso-8859-1
+```

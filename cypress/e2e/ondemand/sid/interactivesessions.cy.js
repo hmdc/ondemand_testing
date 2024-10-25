@@ -1,6 +1,6 @@
 import { NAVIGATION, loadHomepage, navigateSessions, visitApplication } from "../../../support/utils/navigation.js";
 import { changeProfile } from "../../../support/utils/profiles.js";
-import { cleanupSessions, checkSession } from "../../../support/utils/sessions.js";
+import {cleanupSessions, checkSession, startAppSession} from "../../../support/utils/sessions.js";
 
 describe('Sid Dashboard - Interactive Sessions', () => {
   const demoApp = cy.sid.ondemandApplications.filter(l => l.id == Cypress.env('interactive_sessions_app')).shift()
@@ -31,11 +31,12 @@ describe('Sid Dashboard - Interactive Sessions', () => {
 
   it('Should display session panel fields', () => {
     cleanupSessions()
-    visitApplication(demoApp.token)
-    cy.get('div[role="main"] h3').should('contain.text', demoApp.name)
-    //LAUNCH APP WITH EMPTY PARAMETERS
-    cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
-    checkSession(demoApp)
+
+    //LAUNCH APP
+    startAppSession(demoApp)
+    //CHECK LAUNCHED APP IN SESSIONS PAGE IS RUNNING
+    checkSession(demoApp, true)
+    //CLEANUP
     cleanupSessions()
   })
 

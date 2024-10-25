@@ -1,6 +1,6 @@
 import { NAVIGATION, loadHomepage, navigateToApplication } from "../../../support/utils/navigation.js";
 import { changeProfile } from "../../../support/utils/profiles.js";
-import { cleanupSessions, checkSession } from "../../../support/utils/sessions.js";
+import { cleanupSessions, checkSession, startAppSession } from "../../../support/utils/sessions.js";
 
 describe('FASRC Dashboard - Interactive Apps', () => {
   const interactiveApps = cy.sid.ondemandApplications.filter(l => Cypress.env('fasrcv3_dashboard_applications').includes(l.id))
@@ -43,16 +43,12 @@ describe('FASRC Dashboard - Interactive Apps', () => {
     it(`${fasrcClusterProfile}: Should launch interactive application: ${app.token} - launchApplications: ${launchApplications}`, () => {
       cleanupSessions()
 
-      navigateToApplication(app.name)
-      cy.get('div[role="main"] h3').should('contain.text', app.name)
-
-      //LAUNCH APP WITH EMPTY PARAMETERS
-      cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
+      //LAUNCH APP
+      startAppSession(app)
       //CHECK LAUNCHED APP IN SESSIONS PAGE IS RUNNING
-      checkSession(app)
+      checkSession(app, true)
       //CLEANUP
       cleanupSessions()
-      
     })
   })
 

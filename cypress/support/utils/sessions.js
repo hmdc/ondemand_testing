@@ -1,11 +1,18 @@
-export const startDevSession = () => {
-  const auth = cy.sid.auth
-  const qs = cy.sid.query_params
-  const longRunningTimeout = cy.sid.timeout
-  // HARDCODE HIDDEN APP
-  cy.visit('/pun/sys/dashboard/batch_connect/sys/RstudioDev/session_contexts/new', { auth, qs })
+import { visitApplication } from "./navigation.js";
+
+export const startAppSession = (app) => {
+  visitApplication(app.token)
+  cy.get('div[role="main"] h3').should('contain.text', app.name)
+  launchCurrentApp()
+}
+
+export const launchCurrentApp = () => {
+  const partition = cy.sid.partition
+  cy.get('form#new_batch_connect_session_context input#batch_connect_session_context_bc_queue').clear()
+  if (partition) {
+    cy.get('form#new_batch_connect_session_context input#batch_connect_session_context_bc_queue').type(partition)
+  }
   cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
-  cy.get('div.session-panel[data-id] div.card-heading div.float-right', { timeout: longRunningTimeout }).should('contain.text', 'Running')
 }
 
 export const checkSession = (app, supportTicketEnabled=true) => {

@@ -10,7 +10,7 @@ export const navigateToApplication = applicationName => {
 export const visitApplication = appToken => {
   const auth = cy.sid.auth
   const qs = cy.sid.query_params
-  cy.visit(`/pun/sys/dashboard/batch_connect/${appToken}/session_contexts/new`, { auth, qs })
+  cy.visit(`${Cypress.env('dashboard_rootPath')}/batch_connect/${appToken}/session_contexts/new`, { auth, qs })
 }
 
 export const loadHomepage = () => {
