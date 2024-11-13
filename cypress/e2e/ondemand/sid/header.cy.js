@@ -69,6 +69,7 @@ describe('Sid Dashboard - Header', () => {
   })
 
   it('Should display Terminals navigation item', () => {
+    const terminal_url = Cypress.env('navigation_terminal_url')
     cy.get('nav li.dropdown a[title="Terminals"]').as('navItem')
     cy.get('@navItem').invoke('text').should('match', /terminals/i)
     cy.get('@navItem').click()
@@ -77,6 +78,7 @@ describe('Sid Dashboard - Header', () => {
     cy.get('@menu').first().should('be.visible')
     cy.get('@menu').first().find('a').should($submenuElement => {
       expect($submenuElement.attr('target')).to.equal('_blank')
+      expect($submenuElement.attr('href')).to.equal(terminal_url)
     })
   })
 
