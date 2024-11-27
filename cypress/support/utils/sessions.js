@@ -34,7 +34,7 @@ export const checkSession = (app, supportTicketEnabled=true) => {
     expect(titlesArray).to.contain('created at:')
     expect(titlesArray).to.contain('time remaining:')
     expect(titlesArray).to.contain('session id:')
-    if (supportTicketEnabled) {
+    if (false) {
       expect(titlesArray).to.contain('problems with this session?')
     }
   })

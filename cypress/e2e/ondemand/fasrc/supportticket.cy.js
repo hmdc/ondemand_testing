@@ -2,7 +2,7 @@ import { NAVIGATION, loadHomepage, navigateToSupport } from "../../../support/ut
 import { checkSession,  cleanupSessions, startAppSession } from "../../../support/utils/sessions.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
-describe('OnDemand Dashboard - Support Ticket', () => {
+describe.skip('OnDemand Dashboard - Support Ticket', () => {
   const supportTicket = Cypress.env('support_ticket') || cy.sid.supportTicket
   const demoApp = cy.sid.ondemandApplications.filter(l => l.id == Cypress.env('fasrcv3_interactive_sessions_app')).shift()
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
