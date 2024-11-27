@@ -34,7 +34,7 @@ node --version
 `npm install`
 
 ## Running tests
-To run tests against a remote environment, you need to be connected to the appropriate VPN, `iqssrc`, `fasrc` or `fasse`.
+To run tests against a remote environment, you need to be connected to the appropriate VPN, `@iqssrc`, `@fasrc` or `@fasse`.
 
 Cypress can be configured using environment variables. We use a feature of Cypress to setup and environment file: `cypress.env.json` with environment specific configuration. Each `make` task that executes a test will create a copy of the environment specific file into the `cypress.env.json` file.
 
@@ -43,36 +43,29 @@ In order to support the multiple OnDemand environments, we have created several 
  * `ondemand/cypress.env.json.local` - to be removed.
  * `ondemand/cypress.env.json.dev-cannon`
  * `ondemand/cypress.env.json.dev-fasse`
- * `ondemand/cypress.env.json.staging-cannon`
- * `ondemand/cypress.env.json.staging-fasse`
+ * `ondemand/cypress.env.json.qa-cannon`
  * `ondemand/cypress.env.json.prod-cannon`
- * `ondemand/cypress.env.json.prod-cannon-a`
- * `ondemand/cypress.env.json.prod-cannon-b`
- * `ondemand/cypress.env.json.prod-cannon-c`
  * `ondemand/cypress.env.json.prod-fasse`
- * `ondemand/cypress.env.json.prod-fasse-a`
- * `ondemand/cypress.env.json.prod-fasse-b`
- * `ondemand/cypress.env.json.prod-fasse-c`
 
 The following `make` tasks will execute the tests for FASRC v3:
   * `make fasrcv3 CONFIG=prod-cannon`
-  * `make fasrcv3 CONFIG=prod-cannon-a`
-  * `make fasrcv3 CONFIG=prod-cannon-b`
-  * `make fasrcv3 CONFIG=prod-cannon-c`
+  * `make fasrcv3 CONFIG=prod-cannon.a`
+  * `make fasrcv3 CONFIG=prod-cannon.b`
+  * `make fasrcv3 CONFIG=prod-cannon.c`
   * `make fasrcv3 CONFIG=prod-fasse`
-  * `make fasrcv3 CONFIG=prod-fasse-a`
-  * `make fasrcv3 CONFIG=prod-fasse-b`
-  * `make fasrcv3 CONFIG=prod-fasse-c`
+  * `make fasrcv3 CONFIG=prod-fasse.a`
+  * `make fasrcv3 CONFIG=prod-fasse.b`
+  * `make fasrcv3 CONFIG=prod-fasse.c`
 
 The following `make` tasks will execute the tests for OnDemand v3 with the FASRC and Sid profiles against the different environments:
   * `make ondemand CONFIG=prod-cannon`
-  * `make ondemand CONFIG=prod-cannon-a`
-  * `make ondemand CONFIG=prod-cannon-b`
-  * `make ondemand CONFIG=prod-cannon-c`
+  * `make ondemand CONFIG=prod-cannon.a`
+  * `make ondemand CONFIG=prod-cannon.b`
+  * `make ondemand CONFIG=prod-cannon.c`
   * `make ondemand CONFIG=prod-fasse`
-  * `make ondemand CONFIG=prod-fasse-a`
-  * `make ondemand CONFIG=prod-fasse-b`
-  * `make ondemand CONFIG=prod-fasse-c`
+  * `make ondemand CONFIG=prod-fasse.a`
+  * `make ondemand CONFIG=prod-fasse.b`
+  * `make ondemand CONFIG=prod-fasse.c`
 
 
 ### Dashboard Credentials
@@ -80,7 +73,7 @@ In order to connect to the dashboard, we need to provide the automated tests wit
  * `OOD_USERNAME`
  * `OOD_PASSWORD`
 
- example: `env OOD_USERNAME=ood OOD_PASSWORD=ood make sid CONFIG=prod-fasse`
+ example: `env OOD_USERNAME=ood OOD_PASSWORD=ood make ondemand CONFIG=prod-fasse`
 
  The credentials file can be droped at the root of the project: `credentials.json`. This is a JSON format file with the username and password, example:
 ```

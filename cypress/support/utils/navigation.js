@@ -1,5 +1,5 @@
 export const NAVIGATION = {
-  baseUrl: Cypress.env('dashboard_baseUrl'),
+  baseUrl: Cypress.env('baseUrl'),
   rootPath: Cypress.env('dashboard_rootPath'),
 }
 export const navigateToApplication = applicationName => {

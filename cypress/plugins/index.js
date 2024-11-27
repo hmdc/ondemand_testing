@@ -38,8 +38,6 @@ module.exports = (on, config) => {
     console.log(`Credentials loaded from: ${credentialsPath}`)
   }
 
-  config.baseUrl = config.env['baseUrl']
-
   if (process.env['OOD_USERNAME']) {
     config.env['dashboard_username'] = process.env['OOD_USERNAME']
     console.log('Overriding username with $OOD_USERNAME')
@@ -49,6 +47,31 @@ module.exports = (on, config) => {
     config.env['dashboard_password'] = process.env['OOD_PASSWORD']
     console.log('Overriding password with $OOD_PASSWORD')
   }
+
+  const ondemandEnvironments = {
+    "dev-cannon.a" : "https://b-dev-cannonooda.rc.fas.harvard.edu/",
+    "dev-fasse.a" : "https://h-dev-fasseooda.rc.fas.harvard.edu/",
+
+    "qa-cannon.a" : "https://b-qa-cannonooda.rc.fas.harvard.edu/",
+    "qa-fasse.a" : "https://h-qa-fasseooda.rc.fas.harvard.edu/",
+
+    "prod-cannon" : "https://rcood.rc.fas.harvard.edu/",
+    "prod-cannon.a" : "https://b-cannonooda.rc.fas.harvard.edu/",
+    "prod-cannon.b" : "https://b-cannonoodb.rc.fas.harvard.edu/",
+    "prod-cannon.c" : "https://b-cannonoodc.rc.fas.harvard.edu/",
+
+    "prod-fasse" : "https://fasseood.rc.fas.harvard.edu/",
+    "prod-fasse.a" : "https://h-fasseooda.rc.fas.harvard.edu/",
+    "prod-fasse.b" : "https://h-fasseoodb.rc.fas.harvard.edu/",
+    "prod-fasse.c" : "https://h-fasseoodc.rc.fas.harvard.edu/",
+  }
+
+  const ood_environment = process.env['OOD_ENVIRONMENT']
+  const app_url = ondemandEnvironments[ood_environment]
+  console.log(`Using environment: ${ood_environment}`)
+
+  config.baseUrl = app_url
+  config.env['baseUrl'] = app_url
 
   const credentialsCheck = config.env['dashboard_username'] && config.env['dashboard_password'] ? 'provided' : 'not provided'
   console.log(`Dashboard credentials: ${credentialsCheck} - username: ${config.env['dashboard_username']}`)
