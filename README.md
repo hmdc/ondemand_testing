@@ -67,6 +67,24 @@ The following `make` tasks will execute the tests for OnDemand v3 with the FASRC
   * `make ondemand CONFIG=prod-fasse.b`
   * `make ondemand CONFIG=prod-fasse.c`
 
+### Environments
+
+Depending on the environment set in the `CONFIG` variable, the tests will be run on the following servers:
+
+| Environment   | Server URL                                   |
+|:--------------|:---------------------------------------------|
+| dev-cannon.a  | https://b-dev-cannonooda.rc.fas.harvard.edu/ |
+| dev-fasse.a   | https://h-dev-fasseooda.rc.fas.harvard.edu/  |
+| qa-cannon.a   | https://b-qa-cannonooda.rc.fas.harvard.edu/  |
+| qa-fasse.a    | https://h-qa-fasseooda.rc.fas.harvard.edu/   |
+| prod-cannon   | https://rcood.rc.fas.harvard.edu/            |
+| prod-cannon.a | https://b-cannonooda.rc.fas.harvard.edu/     |
+| prod-cannon.b | https://b-cannonoodb.rc.fas.harvard.edu/     |
+| prod-cannon.c | https://b-cannonoodc.rc.fas.harvard.edu/     |
+| prod-fasse    | https://fasseood.rc.fas.harvard.edu/         |
+| prod-fasse.a  | https://h-fasseooda.rc.fas.harvard.edu/      |
+| prod-fasse.b  | https://h-fasseoodb.rc.fas.harvard.edu/      |
+| prod-fasse.c  | https://h-fasseoodc.rc.fas.harvard.edu/      |
 
 ### Dashboard Credentials
 In order to connect to the dashboard, we need to provide the automated tests with credentials. We can set environment variables or a credentials file. The environment variables are:
