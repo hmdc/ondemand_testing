@@ -17,9 +17,9 @@ describe('FASRC Dashboard - Metrics Widget and Page', () => {
   })
 
   describe(`${fasrcClusterProfile}: Should display Metrics page`, () => {
-    navigateToMetrics()
-    
+        
     it('Help section', () => {
+      navigateToMetrics()
       cy.get('div.metrics-help').should('be.visible')
       cy.get('div.metrics-help div.introduction').should('be.visible')
       cy.get('div.metrics-help div.description').should('be.visible')        
