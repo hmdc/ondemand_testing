@@ -19,17 +19,8 @@ endif
 CONFIG_FILE := $(basename $(CONFIG))
 ENV:= env OOD_ENVIRONMENT=$(CONFIG)
 
-sid:
-	@echo -e "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
-	cp -rf ./sid/cypress.env.json.$(CONFIG_FILE) cypress.env.json
-	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec cypress/e2e/sid-dashboard/*
-
-fasrcv3:
-	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
-	cp -rf ./ondemand/cypress.env.json.$(CONFIG_FILE) cypress.env.json
-	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/fasrcv3/*.cy.js"
-
 ondemand:
 	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
 	cp -rf ./ondemand/cypress.env.json.$(CONFIG_FILE) cypress.env.json
 	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/*.cy.js,cypress/e2e/ondemand/fasrc/*.cy.js,cypress/e2e/ondemand/sid/*.cy.js"
+
