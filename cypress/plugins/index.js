@@ -50,6 +50,7 @@ module.exports = (on, config) => {
 
   const ondemandEnvironments = {
     "dev-cannon.a" : "https://b-dev-cannonooda.rc.fas.harvard.edu/",
+    "dev-cannon.a-02": "https://b-dev-cannonooda-02.rc.fas.harvard.edu/",
     "dev-fasse.a" : "https://h-dev-fasseooda.rc.fas.harvard.edu/",
 
     "qa-cannon.a" : "https://b-qa-cannonooda.rc.fas.harvard.edu/",
