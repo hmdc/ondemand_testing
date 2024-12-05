@@ -48,3 +48,8 @@ export const navigateToSupport = () => {
   cy.get('nav li.dropdown a[title="Help"]').click()
   cy.get('nav li.dropdown a[title="Help"] ~ ul a[title="Submit Support Ticket"]').click()
 }
+
+export const navigateToMetrics = () => {
+  cy.get('nav li.dropdown a[title="Help"]').click()
+  cy.get('nav li.dropdown a[title="Help"] ~ ul a[title="Metrics"]').click()
+}
