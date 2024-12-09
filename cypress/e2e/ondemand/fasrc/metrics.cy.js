@@ -30,7 +30,7 @@ describe('FASRC Dashboard - Metrics Widget and Page', () => {
       cy.get('div.metrics-help div.description').contains('strong','Understanding Efficiency Metrics').should('be.visible')       
     })
 
-    it('Right lateral section', () => {
+    it('Widget section', () => {
         navigateToMetrics()
         cy.get('div.metrics').should('be.visible')
         cy.get('div.metrics').contains('h3','Cannon Cluster Metrics').should('be.visible')

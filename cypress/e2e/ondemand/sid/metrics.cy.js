@@ -1,7 +1,7 @@
 import { NAVIGATION, loadHomepage, navigateToMetrics } from "../../../support/utils/navigation.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
-describe('FASRC Dashboard - Metrics Widget and Page', () => {
+describe('Sid Dashboard - Metrics Widget and Page', () => {
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
 
@@ -16,7 +16,7 @@ describe('FASRC Dashboard - Metrics Widget and Page', () => {
     loadHomepage()
   })
 
-  describe(`${fasrcClusterProfile}: Should display Metrics page`, () => {
+  describe('Should display Metrics page', () => {
         
     it('Help section', () => {
       navigateToMetrics()
@@ -30,7 +30,7 @@ describe('FASRC Dashboard - Metrics Widget and Page', () => {
       cy.get('div.metrics-help div.description').contains('strong','Understanding Efficiency Metrics').should('be.visible')       
     })
 
-    it('Right lateral section', () => {
+    it('Widget section', () => {
         navigateToMetrics()
         cy.get('div.metrics').should('be.visible')
         cy.get('div.metrics').contains('h3','Cannon Cluster Metrics').should('be.visible')
