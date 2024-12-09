@@ -109,20 +109,24 @@ The `--` parameter is added to pass parameters from the command line to the exec
 
 When using the `Cypress` CLI, please ensure that the right environment has been copied into `cypress.env.json` file.
 
+As well, we need to pass the environment that we are using to select the appropriate based URL.
+
+Full list of environments and URLs [here](cypress/plugins/index.js)
+
 ```
 Opening Cypress UI
-npm run cypress -- open
+env OOD_ENVIRONMENT=prod-cannon npm run cypress -- open
 
 Running all tests inside a folder
-npm run cypress -- run --spec "cypress/e2e/ondemand/sid/*"
+env OOD_ENVIRONMENT=prod-fasse npm run cypress -- run --spec "cypress/e2e/ondemand/sid/*"
 
 Running an individual test
-npm run cypress -- run --spec "cypress/e2e/ondemand/fasrcv3/footer.cy.js"
-npm run cypress -- run --spec "cypress/e2e/ondemand/fasrc/homepage.cy.js"
-npm run cypress -- run --spec "cypress/e2e/ondemand/sid/supportticket.cy.js"
+env OOD_ENVIRONMENT=prod-cannon.a npm run cypress -- run --spec "cypress/e2e/ondemand/fasrcv3/footer.cy.js"
+env OOD_ENVIRONMENT=prod-cannon.b npm run cypress -- run --spec "cypress/e2e/ondemand/fasrc/homepage.cy.js"
+env OOD_ENVIRONMENT=prod-cannon.c npm run cypress -- run --spec "cypress/e2e/ondemand/sid/supportticket.cy.js"
 
 Running with other browsers
-npm run cypress -- run --browser chrome"
+env OOD_ENVIRONMENT=prod-fasse.a npm run cypress -- run --browser chrome"
 ```
 
 ## Tests and Configuration
