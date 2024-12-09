@@ -4,6 +4,8 @@ import {changeProfile} from "../../../support/utils/profiles";
 describe('FASRC Dashboard - Metrics Widget and Page', () => {
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
+  const cluster = Cypress.env('cluster')
+  const clusterName = cluster == 'cannon' ? 'Cannon' : cluster == 'fasse' ? 'FASSE' : 'Example'
 
   before(() => {
     loadHomepage()
@@ -33,7 +35,7 @@ describe('FASRC Dashboard - Metrics Widget and Page', () => {
     it('Widget section', () => {
         navigateToMetrics()
         cy.get('div.metrics').should('be.visible')
-        cy.get('div.metrics').contains('h3','Cannon Cluster Metrics').should('be.visible')
+        cy.get('div.metrics').contains('h3',`${clusterName} Cluster Metrics`).should('be.visible')
         cy.get('div.metrics .metrics-widget-component .card .card-header').contains('h3','Fairshare').should('be.visible')
         cy.get('div.metrics .metrics-widget-component .card .card-header').contains('h3','CPU Jobs by State').should('be.visible')
         cy.get('div.metrics .metrics-widget-component .card .card-header').contains('h3','GPU Jobs by State').should('be.visible')
