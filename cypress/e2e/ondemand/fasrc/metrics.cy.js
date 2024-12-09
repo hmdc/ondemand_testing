@@ -5,7 +5,7 @@ describe('FASRC Dashboard - Metrics Widget and Page', () => {
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
   const clusterName = Cypress.env('cluster_name')
-  
+
   before(() => {
     loadHomepage()
     changeProfile(fasrcClusterProfile)

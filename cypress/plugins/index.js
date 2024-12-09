@@ -73,7 +73,7 @@ module.exports = (on, config) => {
 
   config.baseUrl = app_url
   config.env['baseUrl'] = app_url
-  
+
   const credentialsCheck = config.env['dashboard_username'] && config.env['dashboard_password'] ? 'provided' : 'not provided'
   console.log(`Dashboard credentials: ${credentialsCheck} - username: ${config.env['dashboard_username']}`)
 
