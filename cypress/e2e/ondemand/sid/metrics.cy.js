@@ -4,9 +4,8 @@ import {changeProfile} from "../../../support/utils/profiles";
 describe('Sid Dashboard - Metrics Widget and Page', () => {
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
-  const cluster = Cypress.env('cluster')
-  const clusterName = cluster == 'cannon' ? 'Cannon' : cluster == 'fasse' ? 'FASSE' : 'Example'
-  
+  const clusterName = Cypress.env('cluster_name')
+    
   before(() => {
     loadHomepage()    
     changeProfile(cy.sid.profiles.sid.title)
