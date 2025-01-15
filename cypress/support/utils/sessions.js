@@ -3,16 +3,25 @@ import { visitApplication } from "./navigation.js";
 export const startAppSession = (app) => {
   visitApplication(app.token)
   cy.get('div[role="main"] h3').should('contain.text', app.name)
-  launchCurrentApp()
+  cy.task('log', `Starting app: ${app.token}`)
+  launchCurrentApp(app.gpu)
 }
 
-export const launchCurrentApp = () => {
-  const partition = cy.sid.partition
+export const launchCurrentApp = (gpu= false) => {
+  const partition = gpu ? cy.sid.gpu_partition : cy.sid.partition
+  cy.task('log', `Overridden partition: ${partition}`)
   cy.get('form#new_batch_connect_session_context input#batch_connect_session_context_bc_queue').clear()
   if (partition) {
     cy.get('form#new_batch_connect_session_context input#batch_connect_session_context_bc_queue').type(partition)
   }
   cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
+  cy.get('div.container-md > div.alert-danger').contains('OnDemand requires a newer version of the browser').then(($invalidBrowserMessage) => {
+    if ($invalidBrowserMessage.length) {
+      // DISMISS INVALID BROWSER MESSAGE IF AVAILABLE
+      cy.wrap($invalidBrowserMessage).find('button').click();
+    }
+  });
+  cy.get('div.container-md > div.alert-success').should('exist');
 }
 
 export const checkSession = (app, supportTicketEnabled=true) => {
