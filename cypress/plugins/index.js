@@ -74,12 +74,12 @@ module.exports = (on, config) => {
     "qa-fasse.a" : "https://h-qa-fasseooda.rc.fas.harvard.edu/",
 
     "prod-cannon" : "https://rcood.rc.fas.harvard.edu/",
-    "prod-cannon.a" : "https://b-cannonooda-03.rc.fas.harvard.edu/",
+    "prod-cannon.a" : "https://b-cannonooda.rc.fas.harvard.edu/",
     "prod-cannon.b" : "https://b-cannonoodb.rc.fas.harvard.edu/",
     "prod-cannon.c" : "https://b-cannonoodc.rc.fas.harvard.edu/",
 
     "prod-fasse" : "https://fasseood.rc.fas.harvard.edu/",
-    "prod-fasse.a" : "https://h-fasseooda-01.rc.fas.harvard.edu/",
+    "prod-fasse.a" : "https://h-fasseooda.rc.fas.harvard.edu/",
     "prod-fasse.b" : "https://h-fasseoodb.rc.fas.harvard.edu/",
     "prod-fasse.c" : "https://h-fasseoodc.rc.fas.harvard.edu/",
   }
