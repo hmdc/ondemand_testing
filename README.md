@@ -151,6 +151,9 @@ According to Cypress support, these are messages printed by the Electron browser
 
 Manually testing the SSL certificate of each individual host with cUrl
 ```
+nslookup h-fasseooda-01.rc.fas.harvard.edu
+curl -v --resolve fasseood.rc.fas.harvard.edu:443:10.31.26.18 --head https://fasseood.rc.fas.harvard.edu/pun/sys/dashboard
+
 nslookup b-cannonooda-01.rc.fas.harvard.edu
 curl -v --resolve rcood.rc.fas.harvard.edu:443:10.242.123.101 --head https://rcood.rc.fas.harvard.edu/pun/sys/dashboard
 

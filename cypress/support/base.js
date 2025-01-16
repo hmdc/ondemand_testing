@@ -14,6 +14,7 @@ cy.sid = {
   },
   //SLURM PARTITION => IN CASE test PARTITION IS NOT WORKING
   partition: Cypress.env('slurm_partition') ?? "test",
+  gpu_partition:"gpu_test",
   //QUERY PARAMS TO ENABLE/DISABLE FEATURES WHEN NEEDED
   query_params: {
   },
@@ -30,7 +31,7 @@ cy.sid = {
     {"id": "main-jupyter", "token": "sys/Jupyter/main", "name": "Jupyter notebook / Jupyterlab"},
     {"id": "main-rstudio", "token": "sys/RStudioServer/main", "name": "RStudio Server"},
     {"id": "main-tensorboard", "token": "sys/TensorBoard/main", "name": "TensorBoard"},
-    {"id": "main-heavyai", "token": "sys/HeavyAI/main", "name": "HeavyAI"},
+    {"id": "main-heavyai", "token": "sys/HeavyAI/main", "name": "HeavyAI", "gpu": true},
 
     {"id": "dev-ql-matlab", "token": "sys/Matlab/ql_matlab_dev", "name": "Matlab"},
     {"id": "dev-ql-sas", "token": "sys/SAS/ql_sas_dev", "name": "SAS"},
@@ -48,7 +49,7 @@ cy.sid = {
     {"id": "fasrc-rstudio", "token": "sys/RStudioServer", "name": "RStudio Server"},
     {"id": "fasrc-genericrd", "token": "sys/GenericRD", "name": "Containerized FAS-RC Remote Desktop"},
     {"id": "fasrc-rdesktop", "token": "sys/RemoteDesktop", "name": "Remote Desktop"},
-    {"id": "fasrc-heavyai", "token": "sys/HeavyAI", "name": "HeavyAI"},
+    {"id": "fasrc-heavyai", "token": "sys/HeavyAI", "name": "HeavyAI", "gpu": true},
   ],
   // CONFIGURED LAUNCHERS
   launchers: [
