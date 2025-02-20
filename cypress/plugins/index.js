@@ -38,7 +38,7 @@ module.exports = (on, config) => {
       }
   })
 
-  const oodEnvironment = process.env['OOD_ENVIRONMENT']
+  const oodEnvironment = process.env['OOD_ENVIRONMENT'] || 'local'
   const oodConfig = oodEnvironment.includes('.') ? oodEnvironment.split('.')[0] : oodEnvironment;
   console.log(`Using oodEnvironment: ${oodEnvironment}`)
   console.log(`Using oodConfig: ${oodConfig}`)
@@ -66,7 +66,9 @@ module.exports = (on, config) => {
   }
 
   const ondemandServers = {
+    "local" : "https://localhost:33000",
     "dev-cannon.a" : "https://b-dev-cannonooda.rc.fas.harvard.edu/",
+    "dev-cannon.a-01": "https://b-dev-cannonooda-01.rc.fas.harvard.edu/",
     "dev-cannon.a-02": "https://b-dev-cannonooda-02.rc.fas.harvard.edu/",
     "dev-fasse.a" : "https://h-dev-fasseooda.rc.fas.harvard.edu/",
 

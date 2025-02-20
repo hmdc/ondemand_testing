@@ -14,7 +14,7 @@ export const launchCurrentApp = (gpu= false) => {
   if (partition) {
     cy.get('form#new_batch_connect_session_context input#batch_connect_session_context_bc_queue').type(partition)
   }
-  cy.get('form#new_batch_connect_session_context input[type="submit"]').click()
+  cy.get('form#new_batch_connect_session_context input[type="submit"][value="Launch"]').click()
   cy.get('div.container-md > div.alert-danger').contains('OnDemand requires a newer version of the browser').then(($invalidBrowserMessage) => {
     if ($invalidBrowserMessage.length) {
       // DISMISS INVALID BROWSER MESSAGE IF AVAILABLE
@@ -32,7 +32,7 @@ export const checkSession = (app, supportTicketEnabled=true) => {
   cy.get('div.session-panel[data-id]', { timeout: longRunningTimeout }).should('be.visible')
   cy.get('div.session-panel[data-id]').should('have.length', 1)
   //WAIT UNTIL RUNNING
-  cy.get('div.session-panel[data-id] div.card-heading div.float-right', { timeout: longRunningTimeout }).should('contain.text', 'Running')
+  cy.get('div.session-panel[data-id] div.card-heading').find('div.float-right, div.float-end', { timeout: longRunningTimeout }).should('contain.text', 'Running')
   cy.get('div.session-panel[data-id] div.card-heading a').invoke('text').should('match', new RegExp(app.name, 'i'))
 
   //GET ALL PANEL ITEMS
@@ -72,6 +72,8 @@ export const deleteSession = sessionId => {
 
 export const cleanupSessions = () => {
   cy.get('nav a[title="My Interactive Sessions"]').click()
+  // IN OOD 4.x+ THE SESSION CARDS ARE LOADED WITH AJAX. WAIT FOR THEM TO BE LOADED.
+  cy.wait(2000)
   cy.get("body").then($body => {
     const $sessions = $body.find("div#batch_connect_sessions div.session-panel")
     if ($sessions.length == 0){

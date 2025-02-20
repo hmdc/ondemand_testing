@@ -1,7 +1,7 @@
 import { NAVIGATION, loadHomepage, navigateToMetrics } from "../../../support/utils/navigation.js";
 import {changeProfile} from "../../../support/utils/profiles";
 
-describe.skip('Sid Dashboard - Metrics Widget and Page', () => {
+describe('Sid Dashboard - Metrics Widget and Page', () => {
   const fasrcClusterProfile = Cypress.env('fasrc_cluster_profile')
   Cypress.config('baseUrl', NAVIGATION.baseUrl);
   const clusterName = Cypress.env('cluster_name')

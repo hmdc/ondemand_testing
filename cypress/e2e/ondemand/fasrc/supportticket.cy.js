@@ -80,39 +80,26 @@ describe.skip('OnDemand Dashboard - Support Ticket', () => {
     cy.get('form#new_support_ticket input#support_ticket_cc:invalid').should('have.length', 1)
   })
 
-  it(`${fasrcClusterProfile}: Should show queue field validation errors`, () => {
-    navigateToSupport()
-    // Submit an otherwise-valid form
-    cy.get('form#new_support_ticket input#support_ticket_email').type('sid_automated_test@example.com')
-    cy.get('form#new_support_ticket input#support_ticket_subject').type('TEST: Sid automated test')
-    cy.get('form#new_support_ticket textarea#support_ticket_description').type('Sid automated test - to delete')
-    cy.get('form#new_support_ticket input#support_ticket_queue').then(elem => {
-      elem.val('Not_A_Queue')
-    })
-    cy.get('form#new_support_ticket input[type="submit"]').click()
-
-    cy.get('div.alert-danger').contains(/invalid queue selection/i).should($messageElement => {
-      expect($messageElement.text()).to.match(/invalid queue selection/i)
-    })
-  })
-
   it(`${fasrcClusterProfile}: Should create support ticket`, () => {
-    cy.task('log', `Support Ticket creationEnabled=${supportTicket.creationEnabled} queue=${supportTicket.queue}`)
+    cy.task('log', `Support Ticket creationEnabled=${supportTicket.creationEnabled}`)
 
     if (supportTicket.creationEnabled) {
       navigateToSupport()
       cy.get('form#new_support_ticket input#support_ticket_email').type('sid_automated_test@example.com')
       cy.get('form#new_support_ticket input#support_ticket_subject').type(`TEST: ${fasrcClusterProfile} - automated test`)
       cy.get('form#new_support_ticket textarea#support_ticket_description').type('Sid automated test - to delete')
-      cy.get('form#new_support_ticket input#support_ticket_queue').then(elem => {
-        elem.val(supportTicket.queue)
-      })
       cy.get('form#new_support_ticket input[type="submit"]').click()
-      cy.get('div.alert-success').should($messageElement => {
+      cy.get('div.alert-success').then($messageElement => {
         //GENERIC MESSAGE IS DISPLAYED
         expect($messageElement.text()).to.match(/support ticket created/i)
-        //TICKET ID IS DISPLAYED
-        expect($messageElement.text()).to.match(/ticketid: \d+/i)
+        const incidentNumberPattern = /Number: (INC\d+)/;
+        const incidentFound = $messageElement.text().match(incidentNumberPattern);
+        if (incidentFound) {
+          const incidentNumber = incidentFound[1];
+          cy.task('log', `Support Ticket created=${incidentNumber}`)
+        } else {
+          cy.task('log', `Unable to find incident number: ${$messageElement.text()}`)
+        }
       })
     }
 

@@ -40,7 +40,7 @@ cy.sid = {
     {"id": "dev-ql-rstudio", "token": "sys/RStudioServer/ql_rstudio_dev", "name": "RStudio Server"},
     {"id": "dev-ql-rdesktop", "token": "sys/RemoteDesktop/ql_remotedesktop_dev", "name": "Remote Desktop"},
 
-    {"id": "dev-app", "token": "sys/RstudioDev", "name": "Rstudio Dev"},
+    {"id": "dev-app", "token": "sys/RStudio", "name": "Rstudio Dev"},
 
     {"id": "fasrc-matlab", "token": "sys/Matlab", "name": "Matlab"},
     {"id": "fasrc-sas", "token": "sys/SAS", "name": "SAS"},
