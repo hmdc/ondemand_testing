@@ -29,6 +29,7 @@ describe('FASRC Dashboard - Metrics Widget and Page', () => {
       cy.get('div.metrics-help div.description').contains('h5','Completed Jobs by State').should('be.visible') 
       cy.get('div.metrics-help div.description').contains('h5','Summary Job Stats').should('be.visible') 
       cy.get('div.metrics-help div.description').contains('strong','Understanding Efficiency Metrics').should('be.visible')       
+      cy.get('div.metrics-help div.partition-widget-help').contains('h4','Partition Status Widget').should('be.visible')
     })
 
     it('Widget section', () => {
@@ -39,6 +40,7 @@ describe('FASRC Dashboard - Metrics Widget and Page', () => {
         cy.get('div.metrics .metrics-widget-component .card .card-header').contains('h3','CPU Jobs by State').should('be.visible')
         cy.get('div.metrics .metrics-widget-component .card .card-header').contains('h3','GPU Jobs by State').should('be.visible')
         cy.get('div.metrics .metrics-widget-component .card .card-header').contains('h3','Summary Job Stats').should('be.visible')
+        cy.get('.partition-widget-component .card .card-header').contains('h3','Partition Status').should('be.visible')
       })
   })
 })
