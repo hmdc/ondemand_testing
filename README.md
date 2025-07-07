@@ -29,6 +29,7 @@ n
 # Verify current Node version:
 node --version
 ```
+Clone this repository and `cd` into its directory.
 
 ## Installing testing tooling and dependencies - Cypress
 `npm install`
