@@ -1,11 +1,7 @@
 # OnDemand automated tests for IQSS
 The automated tests are based on the Cypress testing tool: [https://docs.cypress.io](https://docs.cypress.io)
 
-We have 2 test suites, one suite has been developed for OnDemand version 3.x with the old FASRC configuration. This suite is called `fasrcv3`
-
-The second suite based on OnDemand version 3.x and the Sid and FASRC profiles. This suite is called `ondemand`
-
-The `fasrcv3` suites will deprecated and deleted once the new OnDemand environments are deployed into Staging and Production.
+The test suite is based on OnDemand version 3.x and the Sid and FASRC profiles. This suite is called `ondemand`.
 
 ## Local environment
 The automated tests has been developed and tested using:
@@ -39,7 +35,7 @@ To run tests against a remote environment, you need to be connected to the appro
 
 Cypress can be configured using environment variables. We use a feature of Cypress to setup and environment file: `cypress.env.json` with environment specific configuration. Each `make` task that executes a test will create a copy of the environment specific file into the `cypress.env.json` file.
 
-### FASRCv3 and OnDemand Tests
+### OnDemand tests for multiple environments
 In order to support the multiple OnDemand environments, we have created several configuration files for each one of them:
  * `ondemand/cypress.env.json.local` - to be removed.
  * `ondemand/cypress.env.json.dev-cannon`
@@ -47,16 +43,6 @@ In order to support the multiple OnDemand environments, we have created several 
  * `ondemand/cypress.env.json.qa-cannon`
  * `ondemand/cypress.env.json.prod-cannon`
  * `ondemand/cypress.env.json.prod-fasse`
-
-The following `make` tasks will execute the tests for FASRC v3:
-  * `make fasrcv3 CONFIG=prod-cannon`
-  * `make fasrcv3 CONFIG=prod-cannon.a`
-  * `make fasrcv3 CONFIG=prod-cannon.b`
-  * `make fasrcv3 CONFIG=prod-cannon.c`
-  * `make fasrcv3 CONFIG=prod-fasse`
-  * `make fasrcv3 CONFIG=prod-fasse.a`
-  * `make fasrcv3 CONFIG=prod-fasse.b`
-  * `make fasrcv3 CONFIG=prod-fasse.c`
 
 The following `make` tasks will execute the tests for OnDemand v3 with the FASRC and Sid profiles against the different environments:
   * `make ondemand CONFIG=prod-cannon`
@@ -102,7 +88,7 @@ In order to connect to the dashboard, we need to provide the automated tests wit
 }
 ```
 
-For accessing the cluster, the person doing the testing should use their own credentials.  The jharvard account could also be used.  In either case, the credentials file should be deleted once testing is complete.  For all the local environments, the credentials are already configured in the environment configuration.
+For accessing the cluster, the person doing the testing should use their own credentials.  The jharvard account could also be used.  In either case, the credentials file should be deleted once testing is complete.  For all local environments, the credentials are already configured in the environment configuration.
 
 ## CLI
 We can run `Cypress` through `npm`, a `cypress` script was added to the `package.json` file.  
