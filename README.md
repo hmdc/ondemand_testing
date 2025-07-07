@@ -102,7 +102,7 @@ In order to connect to the dashboard, we need to provide the automated tests wit
 }
 ```
 
-For all the local environments, the credentials are already configured in the environment configuration.
+For accessing the cluster, the person doing the testing should use their own credentials.  The jharvard account could also be used.  In either case, the credentials file should be deleted once testing is complete.  For all the local environments, the credentials are already configured in the environment configuration.
 
 ## CLI
 We can run `Cypress` through `npm`, a `cypress` script was added to the `package.json` file.  
