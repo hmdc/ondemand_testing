@@ -72,6 +72,11 @@ module.exports = (on, config) => {
     "dev-cannon.a2": "https://b-dev-cannonooda-02.rc.fas.harvard.edu/",
     "dev-fasse.a" : "https://h-dev-fasseooda.rc.fas.harvard.edu/",
 
+    "dev-cannon.b" : "https://b-dev-cannonoodb.rc.fas.harvard.edu/",
+    "dev-cannon.b1": "https://b-dev-cannonoodb-11.rc.fas.harvard.edu/",
+    "dev-cannon.b2": "https://b-dev-cannonoodb-12.rc.fas.harvard.edu/",
+    "dev-fasse.b" : "https://h-dev-fasseoodb.rc.fas.harvard.edu/",
+      
     "qa-cannon.a" : "https://b-qa-cannonooda.rc.fas.harvard.edu/",
     "qa-fasse.a" : "https://h-qa-fasseooda.rc.fas.harvard.edu/",
 

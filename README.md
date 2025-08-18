@@ -62,6 +62,8 @@ Depending on the environment set in the `CONFIG` variable, the tests will be run
 |:--------------|:---------------------------------------------|
 | dev-cannon.a  | https://b-dev-cannonooda.rc.fas.harvard.edu/ |
 | dev-fasse.a   | https://h-dev-fasseooda.rc.fas.harvard.edu/  |
+| dev-cannon.b  | https://b-dev-cannonoodb.rc.fas.harvard.edu/ |
+| dev-fasse.b   | https://h-dev-fasseoodb.rc.fas.harvard.edu/  |
 | qa-cannon.a   | https://b-qa-cannonooda.rc.fas.harvard.edu/  |
 | qa-fasse.a    | https://h-qa-fasseooda.rc.fas.harvard.edu/   |
 | prod-cannon   | https://rcood.rc.fas.harvard.edu/            |
