@@ -96,6 +96,12 @@ module.exports = (on, config) => {
     "prod-cannon.b5" : "https://b-cannonoodb-15.rc.fas.harvard.edu/",
     "prod-cannon.b6" : "https://b-cannonoodb-16.rc.fas.harvard.edu/",
     "prod-cannon.c" : "https://b-cannonoodc.rc.fas.harvard.edu/",
+    "prod-cannon.c1" : "https://b-cannonoodc-21.rc.fas.harvard.edu/",
+    "prod-cannon.c2" : "https://b-cannonoodc-22.rc.fas.harvard.edu/",
+    "prod-cannon.c3" : "https://b-cannonoodc-23.rc.fas.harvard.edu/",
+    "prod-cannon.c4" : "https://b-cannonoodc-24.rc.fas.harvard.edu/",
+    "prod-cannon.c5" : "https://b-cannonoodc-25.rc.fas.harvard.edu/",
+    "prod-cannon.c6" : "https://b-cannonoodc-26.rc.fas.harvard.edu/",
 
     "prod-fasse" : "https://fasseood.rc.fas.harvard.edu/",
     "prod-fasse.a" : "https://h-fasseooda.rc.fas.harvard.edu/",
