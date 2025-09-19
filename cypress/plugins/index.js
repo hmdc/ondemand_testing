@@ -111,6 +111,8 @@ module.exports = (on, config) => {
     "prod-fasse.b1" : "https://h-fasseoodb-11.rc.fas.harvard.edu/",
     "prod-fasse.b2" : "https://h-fasseoodb-12.rc.fas.harvard.edu/",
     "prod-fasse.c" : "https://h-fasseoodc.rc.fas.harvard.edu/",
+    "prod-fasse.c1" : "https://h-fasseoodc-21.rc.fas.harvard.edu/",
+    "prod-fasse.c2" : "https://h-fasseoodc-22.rc.fas.harvard.edu/",
   }
 
   const app_url = ondemandServers[oodEnvironment]
