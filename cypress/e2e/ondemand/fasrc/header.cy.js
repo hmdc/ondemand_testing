@@ -33,7 +33,7 @@ describe('FASRC Dashboard - Header', () => {
     cy.get('nav li.dropdown a[title="Clusters"]').as('navItem')
     cy.get('@navItem').invoke('text').should('match', /clusters/i)
     cy.get('@navItem').click()
-    cy.get('@navItem').find('~ ul li').as('menu').should('have.length', 1)
+    cy.get('@navItem').find('~ ul li').as('menu').should('have.length', 2)
 
     cy.get('@menu').first().should('be.visible')
     cy.get('@menu').first().find('a').should($submenuElement => {
