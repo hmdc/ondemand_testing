@@ -23,8 +23,8 @@ describe('FASRC Dashboard - Homepage', () => {
   activePinnedApps.forEach( app => {
     it(`${fasrcClusterProfile}: FASRC Pinned Apps: ${app.id}`, () => {
       // CLICK PINNED APPS
-      cy.get(`div[data-toggle="launcher-button"] a:contains(${app.name})`).should('be.visible')
-      cy.get(`div[data-toggle="launcher-button"] a:contains(${app.name})`).click()
+      cy.get(`div[data-bs-toggle="launcher-button"] a:contains(${app.name})`).should('be.visible')
+      cy.get(`div[data-bs-toggle="launcher-button"] a:contains(${app.name})`).click()
       // VERIFY APP FORM
       cy.get('div[role="main"] h3').should('contain.text', app.name)
 
