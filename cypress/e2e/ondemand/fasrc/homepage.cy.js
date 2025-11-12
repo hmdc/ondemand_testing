@@ -40,8 +40,8 @@ describe('FASRC Dashboard - Homepage', () => {
     })
     const welcomeText = Cypress.env('fasrc_welcome_text')
     cy.get('div h1').invoke('text').should('match', new RegExp(welcomeText, "i"))
-    cy.get('div h2').eq(0).invoke('text').should('match', /Documentation and Training/)
-    cy.get('div h2').eq(1).invoke('text').should('match', /System Status and Planned Downtime/)
+    cy.get('div h2').eq(2).invoke('text').should('match', /Documentation and Training/)
+    cy.get('div h2').eq(3).invoke('text').should('match', /System Status and Planned Downtime/)
   })
 
 })
