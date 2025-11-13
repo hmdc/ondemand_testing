@@ -28,7 +28,7 @@ describe('FASRC Dashboard - Interactive Apps', () => {
       })
 
       interactiveApps.forEach( app => {
-        cy.get('div.list-group a').filter(`a[data-title="${app.name}"]`).should($appElement => {
+        cy.get('div.list-group a').filter(`a[data-bs-original-title="${app.name}"]`).should($appElement => {
           $appElement.is(':visible')
           expect($appElement.text().trim()).to.equal(app.name)
           expect($appElement.attr('href')).to.contain(app.token)
