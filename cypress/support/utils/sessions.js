@@ -47,6 +47,8 @@ export const checkSession = (app, supportTicketEnabled=true) => {
       expect(titlesArray).to.contain('problems with this session?')
     }
   })
+  //CHECK FOR SUMBIT BUTTON
+  cy.get('div.ood-appkit.markdown button[type="submit"]').should('have.length', 1)
 }
 
 export const deleteSession = sessionId => {
