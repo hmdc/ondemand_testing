@@ -44,7 +44,8 @@ In order to support the multiple OnDemand environments, we have created several 
  * `ondemand/cypress.env.json.prod-cannon`
  * `ondemand/cypress.env.json.prod-fasse`
 
-The following `make` tasks will execute the tests for OnDemand v3 with the FASRC and Sid profiles against the different environments:
+The following `make` tasks will execute the tests for OnDemand v3 with the FASRC and Sid profiles against the different environments:  
+To test OnDemand v4, use `make ondemand_fasrc_v4`.
   * `make ondemand CONFIG=prod-cannon`
   * `make ondemand CONFIG=prod-cannon.a`
   * `make ondemand CONFIG=prod-cannon.b`
