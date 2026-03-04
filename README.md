@@ -139,6 +139,7 @@ When running through Docker, Cypress prints some error messages:
 According to Cypress support, these are messages printed by the Electron browser and it is [fine to ignore](https://github.com/cypress-io/cypress/issues/4925)
 
 ## Manual Testing
+Additional Deployment and Testing is documented at [this Google Doc](https://docs.google.com/document/d/1jdKlXzlvUZ7PL0i-A8Ygqt4BAROCJ5Ch60j5Zm6bICk/edit?usp=sharing).  
 
 Manually testing the SSL certificate of each individual host with cUrl
 ```
