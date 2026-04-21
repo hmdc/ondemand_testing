@@ -31,6 +31,10 @@ ondemand_fasrc_v4:
 	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
 	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/*.cy.js,cypress/e2e/ondemand/fasrc_v4/*.cy.js"
 
+ondemand_fasrc_v4_1_4:
+	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
+	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/*.cy.js,cypress/e2e/ondemand/fasrc_v4_1_4/*.cy.js"
+
 ondemand_sid:
 	@echo "${WARNING}For FASSE and Cannon environments, you need to be connected to the VPN${NC}"
 	$(ENV) npm install && $(ENV) ./node_modules/.bin/cypress run --headless --spec "cypress/e2e/ondemand/*.cy.js,cypress/e2e/ondemand/sid/*.cy.js"
