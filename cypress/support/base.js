@@ -19,7 +19,6 @@ cy.sid = {
   query_params: {
   },
   ondemandApplications: [
-    {"id": "main-genericrd", "token": "sys/GenericRD/main", "name": "Containerized FAS-RC Remote Desktop"},
     {"id": "main-rdesktop", "token": "sys/RemoteDesktop/main", "name": "Remote Desktop"},
     {"id": "main-omnisci", "token": "sys/OmniSci/main", "name": "OmniSci"},
     {"id": "main-postgresql", "token": "sys/Postgres/main", "name": "Postgresql db"},
@@ -47,7 +46,6 @@ cy.sid = {
     {"id": "fasrc-stata", "token": "sys/Stata", "name": "Stata"},
     {"id": "fasrc-jupyter", "token": "sys/Jupyter", "name": "Jupyter notebook / Jupyterlab"},
     {"id": "fasrc-rstudio", "token": "sys/RStudioServer", "name": "RStudio Server"},
-    {"id": "fasrc-genericrd", "token": "sys/GenericRD", "name": "Containerized FAS-RC Remote Desktop"},
     {"id": "fasrc-rdesktop", "token": "sys/RemoteDesktop", "name": "Remote Desktop"},
     {"id": "fasrc-heavyai", "token": "sys/HeavyAI", "name": "HeavyAI", "gpu": true},
   ],
