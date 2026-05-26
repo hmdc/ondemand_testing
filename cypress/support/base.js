@@ -30,7 +30,6 @@ cy.sid = {
     {"id": "main-jupyter", "token": "sys/Jupyter/main", "name": "Jupyter notebook / Jupyterlab"},
     {"id": "main-rstudio", "token": "sys/RStudioServer/main", "name": "RStudio Server"},
     {"id": "main-tensorboard", "token": "sys/TensorBoard/main", "name": "TensorBoard"},
-    {"id": "main-heavyai", "token": "sys/HeavyAI/main", "name": "HeavyAI", "gpu": true},
 
     {"id": "dev-ql-matlab", "token": "sys/Matlab/ql_matlab_dev", "name": "Matlab"},
     {"id": "dev-ql-sas", "token": "sys/SAS/ql_sas_dev", "name": "SAS"},
@@ -47,7 +46,6 @@ cy.sid = {
     {"id": "fasrc-jupyter", "token": "sys/Jupyter", "name": "Jupyter notebook / Jupyterlab"},
     {"id": "fasrc-rstudio", "token": "sys/RStudioServer", "name": "RStudio Server"},
     {"id": "fasrc-rdesktop", "token": "sys/RemoteDesktop", "name": "Remote Desktop"},
-    {"id": "fasrc-heavyai", "token": "sys/HeavyAI", "name": "HeavyAI", "gpu": true},
   ],
   // CONFIGURED LAUNCHERS
   launchers: [
