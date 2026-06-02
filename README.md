@@ -1,4 +1,6 @@
 # OnDemand automated tests for IQSS
+The github repository containing these tests can be found at: [https://github.com/hmdc/ondemand_testing](https://github.com/hmdc/ondemand_testing)
+
 The automated tests are based on the Cypress testing tool: [https://docs.cypress.io](https://docs.cypress.io)
 
 The test suite is based on OnDemand version 3.x and the Sid and FASRC profiles. This suite is called `ondemand`.
