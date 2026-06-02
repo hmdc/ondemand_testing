@@ -85,6 +85,10 @@ Depending on the environment set in the `CONFIG` variable, the tests will be run
 | prod-fasse.b     | https://h-fasseoodb.rc.fas.harvard.edu/      |
 | prod-fasse.c     | https://h-fasseoodc.rc.fas.harvard.edu/      |
 
+### Individual servers
+
+The `CONFIG` variable can also be used to test individual servers by appending the number at the end of a hostname to the above CONFIG variables.  For example, to test only `h-fasseoodb-11`, the CONFIG variable should be set to: `prod-fasse.b11`
+
 ### Dashboard Credentials
 In order to connect to the dashboard, we need to provide the automated tests with credentials. We can set environment variables or a credentials file. The environment variables are:
  * `OOD_USERNAME`
